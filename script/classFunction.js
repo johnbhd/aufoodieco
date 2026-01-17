@@ -51,20 +51,30 @@ export function renderCategory(foods, categoryFilter, foodList) {
   });
 }
 
-export function renderSearch(searchInput, foods, foodList) {
-    searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
+export function renderSearch(searchInputs, foods, foodList) {
 
-        // Filter foods by name
-        const filteredFoods = foods.filter(food =>
-            food.name.toLowerCase().includes(query)
-        );
+  searchInputs.forEach(input => {
+    input.addEventListener("input", () => {
+      const query = input.value.toLowerCase();
 
-        if (filteredFoods.length === 0) {
-            foodList.innerHTML = `<p class="text-gray-400 text-center col-span-full text-xl mt-5">No food found...</p>`;
-        } else {
-            renderFoods(filteredFoods, foodList);
-        }
+      const filteredFoods = foods.filter(food =>
+        food.name.toLowerCase().includes(query)
+      );
 
+      if (filteredFoods.length === 0) {
+        foodList.innerHTML =
+          `<p class="text-gray-400 text-center col-span-full text-xl mt-5">
+            No food found...
+           </p>`;
+      } else {
+        renderFoods(filteredFoods, foodList);
+      }
+
+      // keep both inputs in sync
+      searchInputs.forEach(i => {
+        if (i !== input) i.value = input.value;
+      });
     });
+  });
+
 }

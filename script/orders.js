@@ -1,98 +1,78 @@
-export function renderCart(orderCart) {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Columns
+const newOrdersDiv = document.getElementById("new-orders");
+const preparingDiv = document.getElementById("preparing-orders");
+const readyDiv = document.getElementById("ready-orders");
+const menuBtn = document.getElementById("menu-btn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
 
-  let total = 0;
-
-  const itemsHTML = cart.length
-    ? cart.map(c => {
-        const itemTotal = c.price * c.qty;
-        total += itemTotal;
-
-        return `
-          <div class="flex justify-between items-center bg-[#3A3849] p-3 rounded-lg">
-            <div>
-              <h5 class="font-medium">${c.name} (${c.qty}x)</h5>
-              <p class="text-gray-400 text-sm">₱${c.price} each</p>
-            </div>
-
-            <div class="flex items-center gap-3">
-              <span class="font-semibold">₱${itemTotal}</span>
-              <button 
-                class="delete-item text-red-500 hover:text-red-400"
-                data-id="${c.id}"
-                title="Remove item"
-              >
-                <i class="fa-solid fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        `;
-      }).join("")
-    : `<p class="text-gray-400 text-sm text-center">Cart is empty</p>`;
-
-  orderCart.innerHTML = `
-    <div class="space-y-4 mb-6">
-      ${itemsHTML}
-    </div>
-
-    <div class="flex justify-between font-semibold text-lg border-t border-gray-600 pt-2 mb-6">
-      <span>Total</span>
-      <span>₱${total.toFixed(2)}</span>
-    </div>
-
-    <button 
-      id="checkout-btn"
-      class="w-full bg-red-600 text-white text-lg hover:bg-red-500/80 font-semibold py-3 rounded-lg transition
-             ${cart.length === 0 ? "opacity-50 cursor-not-allowed" : ""}"
-      ${cart.length === 0 ? "disabled" : ""}
-    >
-      Checkout
-    </button>
-  `;
-
-  // Attach Checkout listener
-  const checkoutBtn = document.getElementById("checkout-btn");
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      checkoutOrder(cart, total);
-    });
-  }
+function openSidebar() {
+  sidebar.classList.remove("-translate-x-full");
+  overlay.classList.remove("hidden");
 }
-function checkoutOrder(cart, total) {
-  if (cart.length === 0) return;
 
+function closeSidebar() {
+  sidebar.classList.add("-translate-x-full");
+  overlay.classList.add("hidden");
+}
+
+menuBtn.addEventListener("click", openSidebar);
+overlay.addEventListener("click", closeSidebar);
+
+// Load and render orders
+function renderOrders() {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  const usedNumbers = orders.map(o => o.id);
-  let orderId = null;
+  newOrdersDiv.innerHTML = "";
+  preparingDiv.innerHTML = "";
+  readyDiv.innerHTML = "";
 
-  for (let i = 1; i <= 100; i++) {
-    if (!usedNumbers.includes(i)) {
-      orderId = i;
-      break;
-    }
-  }
+  orders.forEach(order => {
+    const orderCard = document.createElement("div");
+    orderCard.className = "bg-gray-200 rounded p-3 flex flex-col gap-2 shadow";
+    orderCard.innerHTML = `
+      <div class="flex justify-between items-center">
+        <span class="font-semibold text-red-700">#${order.id}</span>
+        <span class="text-sm text-gray-600">${order.date}</span>
+      </div>
+      <ul class="text-sm text-black list-disc list-inside">
+        ${order.items.map(item => `<li>${item.name} (${item.qty}x)</li>`).join("")}
+      </ul>
 
-  if (orderId === null) {
-    alert("Order numbers limit reached (100). Please clear completed orders.");
-    return;
-  }
+      <div class="mt-2 flex gap-2">
+        ${
+          order.status === "new"
+            ? `<button class="move-btn bg-yellow-400 text-black px-2 py-1 rounded" data-id="${order.id}" data-next="preparing">Move to Preparing</button>`
+            : order.status === "preparing"
+            ? `<button class="move-btn bg-green-400 text-black px-2 py-1 rounded" data-id="${order.id}" data-next="ready">Move to Ready</button>`
+            : ""
+        }
+      </div>
+    `;
 
-  const newOrder = {
-    id: orderId,
-    items: cart,
-    total: total,
-    date: new Date().toLocaleString(),
-    status: "new"
-  };
-
-  orders.push(newOrder);
-  localStorage.setItem("orders", JSON.stringify(orders));
-
-  localStorage.setItem("cart", JSON.stringify([]));
-
-  const orderCartDiv = document.getElementById("order-cart");
-  renderCart(orderCartDiv);
-
-  alert(`Order #${newOrder.id} placed! Total: ₱${total.toFixed(2)}`);
+    if (order.status === "new") newOrdersDiv.appendChild(orderCard);
+    else if (order.status === "preparing") preparingDiv.appendChild(orderCard);
+    else if (order.status === "ready") readyDiv.appendChild(orderCard);
+  });
 }
+
+// Move order to next stage
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".move-btn");
+  if (!btn) return;
+
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const id = Number(btn.dataset.id);
+  const nextStatus = btn.dataset.next;
+
+  const updatedOrders = orders.map(order => {
+    if (order.id === id) order.status = nextStatus;
+    return order;
+  });
+
+  localStorage.setItem("orders", JSON.stringify(updatedOrders));
+  renderOrders();
+});
+
+// Initial render
+renderOrders();

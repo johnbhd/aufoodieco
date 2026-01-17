@@ -3,7 +3,7 @@ export function FoodData() {
     // 🍽️ Meals
     {
       id: 1,
-      img: "../imgs/food/meals/giniling-with-rice.png",
+      img: "../imgs/food/meals/giniling-with-rice.jpg",
       category: "Meal",
       name: "Giniling with Rice",
       price: 70
@@ -24,7 +24,7 @@ export function FoodData() {
     },
     {
       id: 4,
-      img: "../imgs/food/meals/longganisa-with-rice.png",
+      img: "../imgs/food/meals/longganisa-with-rice.jpg",
       category: "Meal",
       name: "Longganisa with Rice",
       price: 70
@@ -33,7 +33,7 @@ export function FoodData() {
     // 🍟 Chips
     {
       id: 5,
-      img: "../imgs/food/chips/mr-chips-mini.png",
+      img: "../imgs/food/chips/mr-chips-mini.jpg",
       category: "Chips",
       name: "Mr. Chips (Mini)",
       price: 8
@@ -47,7 +47,7 @@ export function FoodData() {
     },
     {
       id: 7,
-      img: "../imgs/food/chips/roller-coaster-mini.png",
+      img: "../imgs/food/chips/roller-coaster-mini.jpg",
       category: "Chips",
       name: "Roller Coaster (Mini)",
       price: 8
@@ -56,7 +56,7 @@ export function FoodData() {
     // 🥤 Drinks
     {
       id: 8,
-      img: "../imgs/food/drinks/real-leaf.png",
+      img: "../imgs/food/drinks/real-leaf.jpg",
       category: "Drink",
       name: "Real Leaf",
       price: 35
