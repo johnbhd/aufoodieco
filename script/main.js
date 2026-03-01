@@ -1,8 +1,9 @@
-import { foodImportAll, addToCart } from "./localstorage.js";
-import { FoodData } from "./food.js";
-import { renderCart } from "./cart.js";
-import { renderFoods, renderCategory, renderSearch } from "./classFunction.js";
-import { showToast } from "./utils.js";
+import { foodImportAll, addToCart } from "./modules/localstorage.js";
+import { FoodData } from "./modules/food.js";
+import { renderCart } from "./modules/cart.js";
+import { renderFoods, renderCategory, renderSearch } from "./modules/classFunction.js";
+import { showToast } from "./modules/utils.js";
+import { testFirebase } from "./app.js"
 
 const foods = FoodData();
 foodImportAll(foods);
@@ -59,3 +60,5 @@ if (categoryFilter) {
 if (searchInput.length) {
   renderSearch(searchInput, foods, foodList);
 }
+
+testFirebase();
