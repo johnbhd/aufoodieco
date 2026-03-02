@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page || FoodieCart</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="shortcut icon" href="./imgs/aulogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="../css/homepage.css"/>
+  <link rel="stylesheet" href="../css/food.css"/>
+  <link rel="stylesheet" href="../css/cart.css"/>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar sidebar-hidden" id="sidebar">
+    <img src="../imgs/aulogo.png" alt="AU LOGO">
+    <nav>
+    <div class="search-box" id="search-mobile" >
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="text" class="food-search" placeholder="Search food...">
+    </div>
+      <a href="./homepage.html">Home</a>
+      <a href="./orders.html">Orders</a>
+      <a href="#">Profile</a>
+      <a href="../index.html">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <section class="menu-section">
+
+      <!-- Top Navigation -->
+      <div class="top-nav">
+
+        <div class="nav-left">
+          <div class="title-mobile">
+              <button id="menu-btn" class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <h4>AU Canteen System</h4>
+          </div>
+          <div class="cart-div" id="cart-div">
+            <i class="fa fa-shopping-cart cart-icon"></i>
+          </div>
+        </div>
+
+        <div class="search-box" id="search-desktop">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text"  class="food-search" placeholder="Search food...">
+        </div>
+      </div>
+
+      <div class="content">
+
+        <!-- Categories -->
+        <div class="categories">
+          <div class="category-btn" data-category="Meal">
+            <i class="fa-solid fa-plate-wheat"></i>
+            <h4>Meals</h4>
+          </div>
+
+          <div class="category-btn" data-category="Snack">
+            <i class="fa-solid fa-cookie-bite"></i>
+            <h4>Snacks</h4>
+          </div>
+
+          <div class="category-btn" data-category="Drink">
+            <i class="fa-solid fa-glass-water"></i>
+            <h4>Drinks</h4>
+          </div>
+          <h4 id="textCon" style="color: red;"></h4>
+        </div>
+
+        <!-- Food Grid -->
+        <div class="food-list" id="food-list"></div>
+
+      </div>
+    </section>
+
+    <!-- Order Section -->
+    <aside class="order-section">
+      <h4>Order</h4>
+      <div class="order-cart" id="order-cart"></div>
+    </aside>
+
+  </main>
+
+</div>
+
+<script type="module" src="../script/main.js"></script>
+<script type="module" src="../script/modules/script.js"></script>
+</body>
+</html>
