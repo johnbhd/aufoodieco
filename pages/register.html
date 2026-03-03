@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+<div class="container">
+
+    <form action="" method="post" id="registerform">
+        <img src="../imgs/aulogo.png" alt="Logo">
+        <h4>Register Page</h4>
+
+         <label>Email:</label>
+        <input type="text" id="txtEmail" required> <br>
+
+        <label>Password:</label>
+        <div class="passwordField">
+            <input type="password" id="txtPassword" required>
+            <i class="fa-solid fa-eye icon" id="passwordToggle"></i>
+        </div><br>
+        <label>Confirm Password:</label>
+        <div class="confirmPasswordField">
+            <input type="password" id="confirmPasswordInput" required>
+            <i class="fa-solid fa-eye icon" id="confirmPasswordToggle"></i>
+        </div>
+
+        <input type="submit" value="Login" class="btn">
+        
+        <p class="link-register">Already have account? <a href="../index.html">Login here.</a></p>
+    </form>
+
+</div>
+
+<script src="../script/modules/auth/showPassword.js"></script>
+<script src="../script/modules/auth/auth.js"></script>
+</body>
+</html>

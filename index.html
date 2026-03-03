@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page || FoodieCart</title>
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-  <link rel="shortcut icon" href="./imgs/aulogo.png" type="image/x-icon">
-  <link rel="stylesheet" href="./css/style.css"/>
-  <link rel="stylesheet" href="./css/homepage.css"/>
-  <link rel="stylesheet" href="./css/food.css"/>
-  <link rel="stylesheet" href="./css/cart.css"/>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="./css/auth.css">
 </head>
-
 <body>
-  <h2>Login</h2>
-  <a href="./pages/homepage.html">Click here</a>
+
+<div class="container">
+
+    <form action="" method="post" id="loginform">
+        <img src="./imgs/aulogo.png" alt="Logo">
+        <h4>Login Page</h4>
+
+        <label>Email:</label>
+        <input type="text" id="txtEmail" required> <br>
+
+        <label>Password:</label>
+        <div class="passwordField">
+            <input type="password" id="txtPassword" required>
+            <i class="fa-solid fa-eye icon" id="passwordToggle"></i>
+        </div>
+
+        <input type="submit" value="Login" class="btn">
+        
+        <p class="link-register">Dont have account? <a href="./pages/register.html">Register here.</a></p>
+    </form>
+
+</div>
+
+<script src="./script/modules/auth/showPassword.js"></script>
+<script src="./script/modules/auth/auth.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { showToast } from "./utils.js";
+import { showToast } from "../utils/utils.js";
 
 export function renderCart(orderCart) {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
