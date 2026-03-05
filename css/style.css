@@ -40,6 +40,7 @@ body {
   background: #1E1D27;
   display: flex;
   flex-direction: column;
+  align-items: center;
   transition: transform 0.3s ease;
 }
 .sidebar h2 {
@@ -57,7 +58,6 @@ body {
   display: block;
   padding: 10px;
   border-radius: 6px;
-  text-align: center;
   color: #e5e5e5;
   text-decoration: none;
   margin-bottom: 10px;
@@ -68,7 +68,9 @@ body {
 .sidebar nav a:hover {
   background: #444;
 }
-
+.sidebar nav a span {
+  margin-left: 5px;
+}
 /* mobile hidden */
 .sidebar-hidden {
   transform: translateX(-100%);

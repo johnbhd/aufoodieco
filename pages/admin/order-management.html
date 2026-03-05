@@ -11,7 +11,9 @@
   />
   <link rel="shortcut icon" href="../../imgs/aulogo.png" type="image/x-icon">
   <link rel="stylesheet" href="../../css/style.css"/>
+  <link rel="stylesheet" href="../../css/order-page.css"/>
   <link rel="stylesheet" href="../../css/admin/dashboard.css"/>
+  <link rel="stylesheet" href="../../css/admin/management.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -19,8 +21,8 @@
 
 <div class="container">
 
-  <!-- Sidebar -->
-   <aside class="sidebar sidebar-hidden" id="sidebar">
+<!-- Sidebar -->
+  <aside class="sidebar sidebar-hidden" id="sidebar">
     <img src="../../imgs/aulogo.png" alt="AU LOGO">
     <h2>Admin</h2>
     <nav>
@@ -65,62 +67,34 @@
         </div>
       </div>
       <!-- Main -->
-      <div class="content">
-        <!-- Card -->
-        <div class="card-dashboard"></div>
+            <div class="content">
+        <div class="orders-grid">
+          <!-- New Orders -->
+          <div class="order-column new">
+            <h3>New Orders</h3>
+            <div id="new-orders" class="order-list"></div>
+          </div>
+          <!-- Preparing -->
+          <div class="order-column preparing">
+            <h3>Preparing</h3>
+            <div id="preparing-orders" class="order-list"></div>
+          </div>
+          <!-- Ready -->
+          <div class="order-column ready">
+            <h3>Ready</h3>
+            <div id="ready-orders" class="order-list"></div>
+          </div>
 
-        <!-- Chart and Recent Orders -->
-        <div class="dashboard-nd">
-          <div class="dashboard-chart">
-            <canvas id="myChart" width="400" height="200"></canvas>
-          </div>
-          <div class="dashboard-recent">
-            <div class="recent-title">
-              <h4>Recents Orders</h4>
-              <p>Latest orders from your canteen are displayed below.</p>
-            </div>
-            <!-- Card Recent orders -->
-            <div class="recent-card">
-                <div class="recent-wrapper">
-                  <div class="recent-header">
-                    <span>Order Id</span>
-                    <span>Items</span>
-                    <span>Status</span>
-                    <span>Time</span>
-                  </div>
-                  <div class="recent-orders">
-                    <div class="orders-card">
-                      <span>#12321</span>
-                      <span>Adobo Rice <span>(2 pcs)</span></span>
-                      <span class="status-new">New</span>
-                      <span>9:30 am</span>
-                    </div>
-                    <div class="orders-card">
-                      <span>#12321</span>
-                      <span>Adobo Rice <span>(2 pcs)</span></span>
-                      <span class="status-pending">Pending</span>
-                      <span>9:30 am</span>
-                    </div>
-                    <div class="orders-card">
-                      <span>#12321</span>
-                      <span>Adobo Rice <span>(2 pcs)</span></span>
-                      <span class="status-ready">Ready</span>
-                      <span>9:30 am</span>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
         </div>
-
+      
       </div>
+
 
     </section>
   </main>
 
 </div>
 <script type="module" src="../../script/modules/utils/script.js"></script>
-<script type="module" src="../../script/admin/dashboard/dashboard.js"></script>
 </body>
 
 </html>

@@ -5,10 +5,10 @@ const formTitle = document.getElementById("form-title");
 const fieldDiv = document.querySelector(".form-fields");
 let isLogin = true;
 
-const users = {
-  email: "jb",
-  password: "jb123"
-};
+const users = [
+  { email: "user", password: "user123", role: "user"},
+  { email: "admin", password: "admin123", role: "admin"}
+]  
 
 function renderLogin() {
   formTitle.textContent = "Login Page";
@@ -72,10 +72,24 @@ function bindRegister() {
 function doLogin() {
   const email = document.getElementById("txtEmail").value;
   const password = document.getElementById("txtPassword").value;
-  if(email === users.email && password === users.password) {
-    window.location.href = "./pages/homepage.html";
-  } else {
-    alert("Wrong credentials...");
+
+  const role = email === "user" ? "user" : "admin";
+  let credentials = false;
+
+  users.map((user) => {
+    if(email === user.email && password === user.password) {
+      credentials = true
+      if (user.role == "user") {
+        alert("Welcome user!");
+        window.location.href = "./pages/homepage.html";
+      } else {
+        alert("Welcome Admin!");
+        window.location.href = "./pages/admin/dashboard.html";
+      }
+    } 
+  })
+  if (!credentials) {
+      alert("Wrong credentials...");
   }
 }
 

@@ -26,11 +26,15 @@ function dashboardCharts() {
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
             datasets: [{
                 label: 'Data',
-                data: [12, 32, 32, 3, 4],
-                backgroundColor: ['red', 'blue', 'green']
+                data: [0, 30, 20, 35, 60, 90, 140],
+                backgroundColor: ['red', 'blue', 'green'],
+                fill: true,
+                borderColor: '#6b8c07',     // pink line
+                backgroundColor: '#38245e',
+                tension: 0.2
             }]
         }
     })

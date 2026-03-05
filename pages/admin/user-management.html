@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Page || FoodieCart</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+  <link rel="shortcut icon" href="../../imgs/aulogo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../../css/style.css"/>
+  <link rel="stylesheet" href="../../css/admin/dashboard.css"/>
+  <link rel="stylesheet" href="../../css/admin/management.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Sidebar -->
+  <aside class="sidebar sidebar-hidden" id="sidebar">
+    <img src="../../imgs/aulogo.png" alt="AU LOGO">
+    <h2>Admin</h2>
+    <nav>
+      <a href="./dashboard.html">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+      </a>
+      <a href="./user-management.html">
+          <i class="fa-regular fa-user"></i>    
+          <span>Users</span>
+      </a>
+      <a href="./menu-management.html">
+          <i class="fas fa-list"></i>
+          <span>Menu</span>
+      </a>
+      <a href="./order-management.html">
+          <i class="fas fa-box"></i>
+          <span>Orders</span>
+      </a>
+      <a href="index.html">
+          <i class="fas fa-sign-out-alt"></i>  
+          <span>Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Main Content -->
+  <main class="main">
+    <section class="menu-section" style="width: 100%;">
+      <!-- Top Navigation -->
+      <div class="top-nav">
+        <div class="nav-left">
+          <div class="title-mobile">
+              <button id="menu-btn" class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <h4>AU Canteen System</h4>
+          </div>
+        </div>
+      </div>
+      <!-- Main -->
+      <div class="content">
+        <div class="wrapper">
+            <!-- 
+            <div class="notification success">
+                <div class="notification-body">
+                    <div class="noti-head">
+                        <i class="fa-solid fa-check icon successful"></i>
+                        <h4>Success</h4>
+                    </div>
+                    <div class="noti-body">
+                        <p>Your ticket was successfully created!</p>
+                    </div>
+                </div>
+            </div>Notification Example -->
+
+            <!-- Ticket Form -->
+            <form>
+                <h4>User Management</h4>
+                <div class="head-con">
+                    <div class="searchdiv">
+                        <input type="text" name="txtsearch" placeholder="Search ticket...">
+                        <button type="submit" class="search-btn">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    <div class="create-div">
+                        <a href="#" class="create-btn">
+                            <span style="margin-right: 5px; font-size: 1.4rem;">+</span>
+                            <span class="mobile-block">Add Ticket</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="table-div">
+                 <table>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr>
+                        <td>USR-001</td>
+                        <td>john_doe</td>
+                        <td>john@example.com</td>
+                        <td>User</td>
+                        <td>Active</td>
+                        <td class="actions">
+                            <a href="#" class="update">Update</a>
+                            <button type="button" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>USR-002</td>
+                        <td>jane_smith</td>
+                        <td>jane@example.com</td>
+                        <td>Admin</td>
+                        <td>Inactive</td>
+                        <td class="actions">
+                            <a href="#" class="update">Update</a>
+                            <button type="button" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>USR-003</td>
+                        <td>mike_brown</td>
+                        <td>mike@example.com</td>
+                        <td>User</td>
+                        <td>Active</td>
+                        <td class="actions">
+                            <a href="#" class="update">Update</a>
+                            <button type="button" class="delete">Delete</button>
+                        </td>
+                    </tr>
+                    <tr class="countTotal">
+                        <td>Total Users</td>
+                        <td colspan="4"></td>
+                        <td>3</td>
+                    </tr>
+                </table>
+                </div>
+            </form>
+        </div>
+        <!-- Footer -->
+        <footer>
+            
+        </footer>
+        </div>
+
+    </section>
+  </main>
+
+</div>
+<script type="module" src="../../script/modules/utils/script.js"></script>
+</body>
+
+</html>
