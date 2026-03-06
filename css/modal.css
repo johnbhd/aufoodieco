@@ -1,50 +1,102 @@
 .modal-con {
     display: none;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    position: absolute;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
+    bottom: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0,0,0,0.6); /* overlay */
+    z-index: 999;
 }
+
 .modal {
     display: flex;
     flex-direction: column;
     gap: 20px;
     color: white;
     background: #1E1D27;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    padding: 40px 30px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.modal-title {
-    display: flex; 
-    align-items: center;
-    gap: 10px;
-    justify-content: center;
-    position: relative;
-}
-.modal-close {
-    position: absolute;
-    right: 0;
-    bottom: 4vh;
-}
+
+
 .modal-title h2 {
-    font-size: 1.5rem;
-    text-align: center;
+    font-size: 1.4rem;
 }
 .modal-order-summary {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.summary-order, .summary-total {
+.summary-order p, .summary-order span {
+    font-size: 0.9rem;
+    color: #d0cdcd;
+}
+.summary-order,
+.summary-total {
     display: flex;
     justify-content: space-between;
 }
+
 .summary-total {
-    border-top: 1px solid rgb(167, 165, 165);
-    padding: 10px 0;
+    border-top: 1px solid #555;
+    padding-top: 10px;
+    font-weight: bold;
+}
+.payment-methods{
+    display: flex;
+    gap: 15px;
+}
+
+.payment-card{
+    background: #2a2935;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s;
+}
+
+.payment-logo{
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.gcash{
+    height: 70px;
+}
+
+.cash{
+    height: 55px;
+}
+
+.payment-card p{
+    font-size: 14px;
+}
+
+.payment-card input{
+    display: none;
+}
+
+.payment-card input:checked + img{
+    transform: scale(1.05);
+}
+
+.payment-card:has(input:checked){
+    border: 2px solid #e62323;
+    background: #33323f;
 }
 .modal-payment {
     display: flex;
@@ -52,31 +104,37 @@
     gap: 10px;
 }
 
+.modal-payment div div {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
 .modal-btn {
     display: flex;
     gap: 10px;
 }
-.modal-btn button:first-child{
+
+.modal-btn button {
     width: 100%;
-    background-color: #e62323;
-    color: white;
     border: none;
     padding: 10px 16px;
     border-radius: 6px;
     cursor: pointer;
 }
 
+.modal-btn button:first-child{
+    background-color: #e62323;
+    color: white;
+}
+
 .modal-btn button:first-child:hover{
     background-color: #880303;
 }
+
 .modal-btn button:last-child{
     background-color: #494955;
-    width: 100%;
     color: white;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 .modal-btn button:last-child:hover{

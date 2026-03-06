@@ -1,4 +1,5 @@
 import { showToast } from "../utils/utils.js";
+import { reviewPaymentOrders } from "./review-payment.js";
 
 export function renderCart(orderCart) {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -53,12 +54,14 @@ export function renderCart(orderCart) {
   const checkoutBtn = document.getElementById("checkout-btn");
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
-      checkoutOrder(cart, total);
+      //checkoutOrder(cart, total);
+      reviewPaymentOrders(cart, total)
     });
   }
 }
 
-function checkoutOrder(cart, total) {
+
+export function checkoutOrder(cart, total) {
   if (cart.length === 0) return;
 
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
