@@ -17,6 +17,7 @@ const searchInput = document.querySelectorAll(".search-box input");
 const cartIcon = document.getElementById("cart-div");
 
 cartIcon.addEventListener("click", () => {
+  console.log("click")
   if (orderSection.style.display !== "block") {
     orderSection.style.display = "block";
   } else {

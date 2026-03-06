@@ -165,6 +165,7 @@ body {
     justify-content: space-between;
     gap: 15px;
     width: 100%;
+     color: white;
   }
   .title-mobile {
     display: flex;

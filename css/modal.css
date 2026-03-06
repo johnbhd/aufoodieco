@@ -1,0 +1,84 @@
+.modal-con {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+    background: #1E1D27;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.modal-title {
+    display: flex; 
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    position: relative;
+}
+.modal-close {
+    position: absolute;
+    right: 0;
+    bottom: 4vh;
+}
+.modal-title h2 {
+    font-size: 1.5rem;
+    text-align: center;
+}
+.modal-order-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.summary-order, .summary-total {
+    display: flex;
+    justify-content: space-between;
+}
+.summary-total {
+    border-top: 1px solid rgb(167, 165, 165);
+    padding: 10px 0;
+}
+.modal-payment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal-btn {
+    display: flex;
+    gap: 10px;
+}
+.modal-btn button:first-child{
+    width: 100%;
+    background-color: #e62323;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-btn button:first-child:hover{
+    background-color: #880303;
+}
+.modal-btn button:last-child{
+    background-color: #494955;
+    width: 100%;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.modal-btn button:last-child:hover{
+    background-color: rgb(156, 144, 144);
+}
