@@ -69,3 +69,10 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media (max-width: 768px) {
+  .order-cart {
+    overflow-y: auto;
+    max-height: 200px;
+  }
+}

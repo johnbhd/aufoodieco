@@ -13,23 +13,22 @@
   display: flex;
   flex-direction: column;
   height: 450px;
-  overflow: hidden;
 }
 
-/* NEW ORDERS (light red bg, red text) */
+/* NEW ORDERS */
 .order-column.new {
   background: #ffe5e5;
   color: #dc2626;
 }
 
-/* PREPARING (white bg, black text) */
+/* PREPARING */
 .order-column.preparing {
-  background: white;
+  background: #ffffff;
   color: #333;
   border: 1px solid #ddd;
 }
 
-/* READY (light blue bg, blue text) */
+/* READY */
 .order-column.ready {
   background: #e6f2ff;
   color: #1e40af;
@@ -43,28 +42,33 @@
 
 /* list scroll */
 .order-list {
-  overflow-y: auto;
   flex: 1;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 /* ===== ORDER ITEM ===== */
 .order-item {
-  background: #f3f3f3;
+  background: white;
   border-radius: 8px;
-  padding: 10px;
+  padding: 12px;
   color: #333;
   display: flex;
   flex-direction: column;
   gap: 6px;
+
+  /* FIX VISIBILITY */
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 /* order header */
 .order-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .order-id {
@@ -86,17 +90,18 @@
 
 /* actions */
 .order-actions {
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 /* move button */
 .move-btn {
   background: #facc15;
   border: none;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
   font-size: 12px;
+  font-weight: 500;
 }
 
 .move-btn:hover {
@@ -104,22 +109,26 @@
 }
 
 /* status badges */
-.status-new {
-  background: #dc2626;
+.status-new,
+.status-preparing,
+.status-ready {
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-new {
+  background: #dc2626;
 }
 
 .status-preparing {
   background: #f59e0b;
-  color: white;
 }
 
 .status-ready {
   background: #10b981;
-  color: white;
 }
 
 /* responsive */
@@ -132,9 +141,10 @@
     height: auto;
   }
 }
+
 @media (min-width: 769px) {
-  #search-desktop, .menu-btn {
+  #search-desktop,
+  .menu-btn {
     display: none;
   }
-
 }

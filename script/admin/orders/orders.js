@@ -6,6 +6,8 @@ const readyDiv = document.getElementById("ready-orders");
 function renderOrders() {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
+  
+
   newOrdersDiv.innerHTML = "";
   preparingDiv.innerHTML = "";
   readyDiv.innerHTML = "";
@@ -24,7 +26,15 @@ function renderOrders() {
         ${order.items.map(item => `<li>${item.name} (${item.qty}x)</li>`).join("")}
       </ul>
 
-
+      <div class="order-actions">
+        ${
+          order.status === "new"
+            ? `<button class="move-btn" data-id="${order.id}" data-next="preparing">Move to Preparing</button>`
+            : order.status === "preparing"
+            ? `<button class="move-btn" data-id="${order.id}" data-next="ready">Move to Ready</button>`
+            : ""
+        }
+      </div>
     `;
 
     if (order.status === "new") newOrdersDiv.appendChild(card);
