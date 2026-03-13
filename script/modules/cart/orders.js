@@ -6,8 +6,6 @@ const readyDiv = document.getElementById("ready-orders");
 function renderOrders() {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-
-
   newOrdersDiv.innerHTML = "";
   preparingDiv.innerHTML = "";
   readyDiv.innerHTML = "";
