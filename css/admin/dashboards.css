@@ -70,7 +70,6 @@
 .recent-card {
     margin-top: 10px;
     width: 100%;
-    max-width: 600px; /* Optional: limit card width */
     margin-left: auto;
     margin-right: auto;
     font-family: Arial, sans-serif;
@@ -128,11 +127,11 @@
 }
 
 .orders-card span:nth-child(1) {
-    text-align: left;
+    text-align: center;
     font-weight: bold;
 }
 .orders-card span:nth-child(2) {
-    text-align: left;
+    text-align: center;
 }
 
 .orders-card span:nth-child(3) {
@@ -141,7 +140,7 @@
 }
 
 .orders-card span:nth-child(4) {
-    text-align: right;
+    text-align: center;
     font-size: 0.9rem;
     color: #555;
 }
