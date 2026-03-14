@@ -11,8 +11,7 @@
   />
   <link rel="shortcut icon" href="../../imgs/aufoodieco-logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../css/style.css"/>
-  <link rel="stylesheet" href="../../css/admin/dashboard.css"/>
-  <link rel="stylesheet" href="../../css/admin/management.css"/>
+  <link rel="stylesheet" href="../../css/admin/managements.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -98,60 +97,15 @@
                     <div class="create-div">
                         <a href="#" class="create-btn">
                             <span style="margin-right: 5px; font-size: 1.4rem;">+</span>
-                            <span class="mobile-block">Add Ticket</span>
+                            <span class="mobile-block">Add Menu</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="table-div">
-                 <table>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Status</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr>
-                        <td>USR-001</td>
-                        <td>john_doe</td>
-                        <td>john@example.com</td>
-                        <td>User</td>
-                        <td>Active</td>
-                        <td class="actions">
-                            <a href="#" class="update">Update</a>
-                            <button type="button" class="delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>USR-002</td>
-                        <td>jane_smith</td>
-                        <td>jane@example.com</td>
-                        <td>Admin</td>
-                        <td>Inactive</td>
-                        <td class="actions">
-                            <a href="#" class="update">Update</a>
-                            <button type="button" class="delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>USR-003</td>
-                        <td>mike_brown</td>
-                        <td>mike@example.com</td>
-                        <td>User</td>
-                        <td>Active</td>
-                        <td class="actions">
-                            <a href="#" class="update">Update</a>
-                            <button type="button" class="delete">Delete</button>
-                        </td>
-                    </tr>
-                    <tr class="countTotal">
-                        <td>Total Users</td>
-                        <td colspan="4"></td>
-                        <td>3</td>
-                    </tr>
-                </table>
+                  <table id="menu-management">
+                 
+                  </table>
                 </div>
             </form>
         </div>
@@ -166,6 +120,8 @@
 
 </div>
 <script type="module" src="../../script/modules/utils/script.js"></script>
+
+<script type="module" src="../../script/admin/menuManagement.js"></script>
 </body>
 
 </html>
