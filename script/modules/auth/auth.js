@@ -1,4 +1,5 @@
 import { showPassword } from "./showPassword.js";
+import { doLogin, doRegister } from "./authHooks.js";
 
 const authBtn = document.getElementById("auth-btn");
 const formTitle = document.getElementById("form-title");
@@ -13,7 +14,9 @@ const year = document.getElementById("year");
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 year.textContent = currentYear;
-
+      const raw = sessionStorage.getItem("session");
+const get = raw ? JSON.parse(raw) : null;
+console.log(get);
 btnAbout.addEventListener('click', () => {
   window.location.href = "./pages/features.html"
 })
@@ -31,16 +34,12 @@ overlay.addEventListener('click', () => {
 })
 let isLogin = true;
 
-const users = [
-  { email: "user", password: "user123", role: "user"},
-  { email: "admin", password: "admin123", role: "admin"}
-]  
 
 function renderLogin() {
   formTitle.textContent = "Login Page";
   fieldDiv.innerHTML = `
     <label>Email:</label>
-    <input type="text" id="txtEmail" required>
+    <input type="email" id="txtEmail" required>
     <label style="padding-top: 10px;">Password:</label>
     <div class="passwordField">
         <input type="password" id="txtPassword" required>
@@ -56,7 +55,7 @@ function renderRegister() {
   formTitle.textContent = "Register Page";
   fieldDiv.innerHTML = `
     <label>Email:</label>
-    <input type="text" id="txtEmail" required>
+    <input type="email" id="txtEmail" required>
     <label style="padding-top: 10px;">Password:</label>
     <div class="passwordField">
         <input type="password" id="txtPassword" required>
@@ -95,44 +94,6 @@ function bindRegister() {
   confirmInput.addEventListener("keydown", e => { if(e.key==="Enter") doRegister(); });
 }
 
-function doLogin() {
-  const email = document.getElementById("txtEmail").value;
-  const password = document.getElementById("txtPassword").value;
-
-  const role = email === "user" ? "user" : "admin";
-  let credentials = false;
-
-  users.map((user) => {
-    if(email === user.email && password === user.password) {
-      credentials = true
-      if (user.role == "user") {
-        alert("Welcome user!");
-        window.location.href = "./pages/homepage.html";
-      } else {
-        alert("Welcome Admin!");
-        window.location.href = "./pages/admin/dashboard.html";
-      }
-    } 
-  })
-  if (!credentials) {
-      alert("Wrong credentials...");
-  }
-}
-
-function doRegister() {
-  const email = document.getElementById("txtEmail").value;
-  const password = document.getElementById("txtPassword").value;
-  const confirmPassword = document.getElementById("confirmPasswordInput").value;
-  
-  if(password === confirmPassword) {
-    alert(`Registered!\nEmail: ${email}\nPassword: ${password}`);
-    renderLogin();
-    isLogin = true;
-    authBtn.innerHTML = `Don't have an account? <u>Register here.</u>`;
-  } else {
-    alert("Passwords do not match!");
-  }
-}
 
 authBtn.addEventListener("click", () => {
   if(isLogin) {

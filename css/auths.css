@@ -5,11 +5,6 @@
     box-sizing: border-box;
 }
 body {
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; */
     background-color: #1E1D27;
 }
 main {
@@ -20,7 +15,7 @@ main {
 
 }
 .nav {
-  background: rgba(30, 29, 39, 0.6); /* same color but transparent */
+  background: rgba(30, 29, 39, 0.6);
   backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -167,7 +162,7 @@ h4 {
     padding-top: 10px;
 }
 
-input[type="text"],
+input[type="email"],
 input[type="password"] {
     width: 100%;
     padding: 10px;
@@ -290,19 +285,20 @@ footer {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         z-index: 1000; 
     }
+    
     .nav-links {
-        position: absolute;
-        top: 0;
-        right: -100%;
-        width: 60%;
-        height: 100vh;
-        background-color: #2d2c36;
-        flex-direction: column;
-        gap: 20px;
-        padding: 30px 20px;
-        transition: right 0.3s ease;
-        z-index: 1001;
-    }
+    position: absolute;
+    top: 70px;
+    right: -100%;
+    width: 60%;
+    height: 120vh;
+    background-color: #2d2c36;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 20px;
+    transition: right 0.3s ease;
+    z-index: 1001;
+  }
     .nav-links li a{
         font-size: 1.5rem;
     }

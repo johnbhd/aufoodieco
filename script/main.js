@@ -3,7 +3,7 @@ import { FoodData } from "./modules/food/food.js";
 import { renderCart } from "./modules/cart/cart.js";
 import { renderFoods, renderCategory, renderSearch } from "./modules/utils/classFunction.js";
 import { showToast } from "./modules/utils/utils.js";
-import { testFirebase } from "./app.js"
+import { testFirebase } from "./app.js";
 
 const foods = FoodData();
 foodImportAll(foods);

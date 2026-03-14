@@ -12,11 +12,12 @@ export async function testFirebase() {
         connected: true,
         time: new Date()
       })
-      
-      //textCon.textContent = "Connected firebase";
+      const get = JSON.parse(sessionStorage.getItem("session"));
       console.log(db)
+      textCon.textContent = get ?? "firebase connected";
+      console.log(get);
   } catch (error) {
-      //textCon.textContent = "Failed Connection firebase";
+      textCon.textContent = "Failed Connection firebase";
     console.log("Error firebase", error);
   }
 }
