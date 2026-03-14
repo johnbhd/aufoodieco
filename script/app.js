@@ -13,10 +13,10 @@ export async function testFirebase() {
         time: new Date()
       })
       
-      textCon.textContent = "Connected firebase";
+      //textCon.textContent = "Connected firebase";
       console.log(db)
   } catch (error) {
-      textCon.textContent = "Failed Connection firebase";
+      //textCon.textContent = "Failed Connection firebase";
     console.log("Error firebase", error);
   }
 }
