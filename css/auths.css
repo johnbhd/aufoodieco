@@ -245,6 +245,9 @@ footer {
     margin-top: 30px;
     color: #646363;
 }
+.nav-links {
+  display: none;
+}
 @media (max-width: 768px) {
     .hero-title h1 { 
         font-size: 2rem;
@@ -306,6 +309,7 @@ footer {
 
     .nav-links.show {
         right: 0;
+        display: flex;
     }
     .menu-btn {
         display: block;
