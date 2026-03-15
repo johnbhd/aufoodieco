@@ -72,25 +72,12 @@
       <!-- Main -->
       <div class="content">
         <div class="wrapper">
-            <!-- 
-            <div class="notification success">
-                <div class="notification-body">
-                    <div class="noti-head">
-                        <i class="fa-solid fa-check icon successful"></i>
-                        <h4>Success</h4>
-                    </div>
-                    <div class="noti-body">
-                        <p>Your ticket was successfully created!</p>
-                    </div>
-                </div>
-            </div>Notification Example -->
 
-            <!-- Ticket Form -->
             <form>
                 <h4>Menu Management</h4>
                 <div class="head-con">
                     <div class="searchdiv">
-                        <input type="text" name="txtsearch" placeholder="Search ticket...">
+                        <input type="text" id="txtsearch" placeholder="Search menu...">
                         <button type="submit" class="search-btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -105,7 +92,9 @@
 
                 <div class="table-div">
                   <table id="menu-management">
-                 
+                    <div id="loader" class="content-loader">
+                        <div class="spinner"></div>
+                    </div>
                   </table>
                 </div>
             </form>
@@ -122,7 +111,7 @@
 </div>
 <script type="module" src="../../script/modules/utils/script.js"></script>
 
-<script type="module" src="../../script/admin/menuManagement.js"></script>
+<script type="module" src="../../script/admin/menu/menuManagement.js"></script>
 </body>
 
 </html>

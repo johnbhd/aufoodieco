@@ -1,6 +1,6 @@
 import { foodImportAll, addToCart } from "./modules/utils/localstorage.js";
 // import { FoodData } from "./modules/food/food.js";
-import { getMenu } from "./modules/food/getData.js";
+import { getMenu } from "./modules/api/getData.js";
 import { renderCart } from "./modules/cart/cart.js";
 import { renderFoods, renderCategory, renderSearch } from "./modules/utils/classFunction.js";
 import { showToast } from "./modules/utils/utils.js";

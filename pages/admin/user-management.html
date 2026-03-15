@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page || FoodieCart</title>
+  <title>User Management Page || FoodieCart</title>
 
   <link
     rel="stylesheet"
@@ -71,29 +71,17 @@
       </div>
       <!-- Main -->
       <div class="content">
+     
         <div class="wrapper">
-            <!-- 
-            <div class="notification success">
-                <div class="notification-body">
-                    <div class="noti-head">
-                        <i class="fa-solid fa-check icon successful"></i>
-                        <h4>Success</h4>
-                    </div>
-                    <div class="noti-body">
-                        <p>Your ticket was successfully created!</p>
-                    </div>
-                </div>
-            </div>Notification Example -->
 
-            <!-- Ticket Form -->
             <form>
                 <h4>User Management</h4>
                 <div class="head-con">
                     <div class="searchdiv">
-                        <input type="text" name="txtsearch" placeholder="Search ticket...">
-                        <button type="submit" class="search-btn">
+                        <input type="text" id="txtsearch" placeholder="Search users...">
+                        <div type="submit" class="search-btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                        </button>
+                        </div>
                     </div>
                     <div class="create-div">
                         <a href="#" class="create-btn">
@@ -104,49 +92,10 @@
                 </div>
 
               <div class="table-div">
-                  <table>
-                      <tr>
-                          <th>User ID</th>
-                          <th>Username</th>
-                          <th>Email</th>
-                          <th>Role</th>
-                          <th>Actions</th>
-                      </tr>
-                      <tr>
-                          <td>1</td>
-                          <td>john_doe</td>
-                          <td>user@gmail.com</td>
-                          <td>User</td>
-                          <td class="actions">
-                              <a href="#" class="update">Update</a>
-                              <button type="button" class="delete">Delete</button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>2</td>
-                          <td>jane_smith</td>
-                          <td>admin@gmail.com</td>
-                          <td>Admin</td>
-                          <td class="actions">
-                              <a href="#" class="update">Update</a>
-                              <button type="button" class="delete">Delete</button>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>3</td>
-                          <td>mike_brown</td>
-                          <td>mike@example.com</td>
-                          <td>User</td>
-                          <td class="actions">
-                              <a href="#" class="update">Update</a>
-                              <button type="button" class="delete">Delete</button>
-                          </td>
-                      </tr>
-                      <tr class="countTotal">
-                          <td>Total Users</td>
-                          <td colspan="3"></td>
-                          <td>3</td>
-                      </tr>
+                  <table id="table-user">
+                    <div id="loader" class="content-loader">
+                        <div class="spinner"></div>
+                    </div>
                   </table>
               </div>
             </form>
@@ -162,6 +111,7 @@
 
 </div>
 <script type="module" src="../../script/modules/utils/script.js"></script>
+<script type="module" src="../../script/admin/users/users.js"></script>
 </body>
 
 </html>

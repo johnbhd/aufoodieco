@@ -1,4 +1,4 @@
-import { getOrders } from "../../modules/food/getData.js"
+import { getOrders } from "../../modules/api/getData.js"
 import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { firebaseConfig } from "../../config/firebase-config.js";
@@ -12,7 +12,7 @@ const readyDiv = document.getElementById("ready-orders");
 
 async function updateOrderStatus(id, nextStatus) {
   try {
-    const orderRef = doc(db, "orders", id); // Use order ID as document ID
+    const orderRef = doc(db, "orders", id); 
     await updateDoc(orderRef, { status: nextStatus });
     console.log(`Order ${id} status updated to ${nextStatus}`);
   } catch (err) {
@@ -47,6 +47,8 @@ async function renderOrders() {
             ? `<button class="move-btn" data-id="${order.id}" data-next="preparing">Move to Preparing</button>`
             : order.status === "preparing"
             ? `<button class="move-btn" data-id="${order.id}" data-next="ready">Move to Ready</button>`
+            : order.status === "ready"
+            ? `<button class="move-btn" data-id="${order.id}" data-next="completed">Mark as Completed</button>`
             : ""
         }
       </div>

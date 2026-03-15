@@ -73,25 +73,11 @@
       <!-- Main -->
       <div class="content">
         <div class="wrapper">
-            <!-- 
-            <div class="notification success">
-                <div class="notification-body">
-                    <div class="noti-head">
-                        <i class="fa-solid fa-check icon successful"></i>
-                        <h4>Success</h4>
-                    </div>
-                    <div class="noti-body">
-                        <p>Your ticket was successfully created!</p>
-                    </div>
-                </div>
-            </div>Notification Example -->
-
-            <!-- Ticket Form -->
             <form>
                 <h4>Orders History Management</h4>
                 <div class="head-con">
                     <div class="searchdiv">
-                        <input type="text" name="txtsearch" placeholder="Search ticket...">
+                        <input type="text" id="txtsearch" placeholder="Search orders...">
                         <button type="submit" class="search-btn">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -99,58 +85,9 @@
                 </div>
                 <div class="table-div">
                   <table id="order-history">
-                    <thead>
-                      <tr>
-                        <th>Order ID</th>
-                        <th>Food</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Date</th>
-                      </tr>
-                    </thead>
-                
-                    <tbody id="order-body">
-                
-                      <tr>
-                        <td>ORD-001</td>
-                        <td>Giniling with Rice</td>
-                        <td>Meal</td>
-                        <td>₱70</td>
-                        <td>2</td>
-                        <td>₱140</td>
-                        <td>2026-03-14</td>
-                      </tr>
-                
-                      <tr>
-                        <td>ORD-002</td>
-                        <td>Sisig with Rice</td>
-                        <td>Meal</td>
-                        <td>₱90</td>
-                        <td>1</td>
-                        <td>₱90</td>
-                        <td>2026-03-14</td>
-                      </tr>
-                
-                      <tr>
-                        <td>ORD-003</td>
-                        <td>Royal</td>
-                        <td>Drink</td>
-                        <td>₱18</td>
-                        <td>3</td>
-                        <td>₱54</td>
-                        <td>2026-03-14</td>
-                      </tr>
-                
-                    </tbody>
-                
-                    <tfoot>
-                      <tr class="countTotal">
-                        <td colspan="5">Total Sales</td>
-                        <td colspan="2">₱284</td>
-                      </tr>
-                    </tfoot>
+                    <div id="loader" class="content-loader">
+                        <div class="spinner"></div>
+                    </div>
                   </table>
                 </div>
             </form>
@@ -166,6 +103,7 @@
 
 </div>
 <script type="module" src="../../script/modules/utils/script.js"></script>
+<script type="module" src="../../script/admin/orderHistory/orderHistory.js"></script>
 </body>
 
 </html>

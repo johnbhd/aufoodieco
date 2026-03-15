@@ -1,5 +1,5 @@
 // Columns
-import { getOrders } from "../food/getData.js"
+import { getOrders } from "../api/getData.js"
 
 
 const newOrdersDiv = document.getElementById("new-orders");
