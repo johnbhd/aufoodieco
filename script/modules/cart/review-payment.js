@@ -2,6 +2,12 @@ import { modalReview } from "./modalReview.js";
 import { checkoutOrder } from "./cart.js";
 
 export function reviewPaymentOrders(cart, total) {
+    const orderSection = document.querySelector('.order-section');
+    
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      orderSection.style.display = 'none';
+    }
+    
     modalReview(cart, total);
 
     const modal = document.querySelector('.modal-con');

@@ -240,10 +240,10 @@ footer {
     margin-top: 30px;
     color: #646363;
 }
-.nav-links {
-  display: none;
-}
 @media (max-width: 768px) {
+    .nav-links {
+      display: none;
+    }
     .hero-title h1 { 
         font-size: 2rem;
     }
