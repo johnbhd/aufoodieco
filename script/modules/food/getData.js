@@ -16,3 +16,15 @@ export async function getMenu() {
    return foods;
  };
  
+ export async function getOrders() {
+   const querySnapshot = await getDocs(collection(db, "orders"));
+   
+   const orders = querySnapshot.docs.map(doc => ({
+     id: doc.id,
+     ...doc.data()
+   }));
+   
+   return orders;
+ };
+ 
+ 

@@ -1,5 +1,22 @@
 import { showToast } from "../utils/utils.js";
 import { reviewPaymentOrders } from "./review-payment.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { firebaseConfig } from "../../config/firebase-config.js";
+import { generateOrderId } from "../../modules/lib/generateId.js";
+ import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+ 
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+ 
+async function pushOrders(orders) {
+  try {
+    await setDoc(doc(db, "orders", orders.id), orders);
+    console.log("Order saved with custom ID:", orders.id);
+  } catch (error) {
+    console.error("Error saving order:", error);
+  }
+}
 
 export function renderCart(orderCart) {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -67,19 +84,7 @@ export function checkoutOrder(cart, total) {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
 
   const usedNumbers = orders.map(o => o.id);
-  let orderId = null;
-
-  for (let i = 1; i <= 100; i++) {
-    if (!usedNumbers.includes(i)) {
-      orderId = i;
-      break;
-    }
-  }
-
-  if (orderId === null) {
-    showToast("Order numbers limit reached (100). Please clear completed orders.");
-    return;
-  }
+  const orderId = generateOrderId();
 
   const newOrder = {
     id: orderId,
@@ -92,7 +97,9 @@ export function checkoutOrder(cart, total) {
   orders.push(newOrder);
   localStorage.setItem("orders", JSON.stringify(orders));
   localStorage.setItem("cart", JSON.stringify([]));
-
+  
+  pushOrders(newOrder);
+  
   renderCart(document.getElementById("order-cart"));
 
   showToast(`Order #${newOrder.id} placed! Total: ₱${total.toFixed(2)}`);

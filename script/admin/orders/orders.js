@@ -1,12 +1,27 @@
-// Columns
+import { getOrders } from "../../modules/food/getData.js"
+import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { firebaseConfig } from "../../config/firebase-config.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const newOrdersDiv = document.getElementById("new-orders");
 const preparingDiv = document.getElementById("preparing-orders");
 const readyDiv = document.getElementById("ready-orders");
 
-function renderOrders() {
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+async function updateOrderStatus(id, nextStatus) {
+  try {
+    const orderRef = doc(db, "orders", id); // Use order ID as document ID
+    await updateDoc(orderRef, { status: nextStatus });
+    console.log(`Order ${id} status updated to ${nextStatus}`);
+  } catch (err) {
+    console.error("Error updating order status:", err);
+  }
+}
 
-  
+async function renderOrders() {
+  const orders = await getOrders()
 
   newOrdersDiv.innerHTML = "";
   preparingDiv.innerHTML = "";
@@ -25,7 +40,7 @@ function renderOrders() {
       <ul class="order-list-items">
         ${order.items.map(item => `<li>${item.name} (${item.qty}x)</li>`).join("")}
       </ul>
-
+      
       <div class="order-actions">
         ${
           order.status === "new"
@@ -35,6 +50,7 @@ function renderOrders() {
             : ""
         }
       </div>
+
     `;
 
     if (order.status === "new") newOrdersDiv.appendChild(card);
@@ -42,22 +58,29 @@ function renderOrders() {
     else if (order.status === "ready") readyDiv.appendChild(card);
   });
 }
-
-document.addEventListener("click", e => {
+document.addEventListener("click", async (e) => {
   const btn = e.target.closest(".move-btn");
   if (!btn) return;
 
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  const id = Number(btn.dataset.id);
+  const id = btn.dataset.id;      
   const nextStatus = btn.dataset.next;
 
-  const updated = orders.map(order => {
+  
+  await updateOrderStatus(id, nextStatus);
+
+  
+  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  orders = orders.map(order => {
     if (order.id === id) order.status = nextStatus;
     return order;
   });
+  localStorage.setItem("orders", JSON.stringify(orders));
 
-  localStorage.setItem("orders", JSON.stringify(updated));
+  
   renderOrders();
 });
 
-renderOrders();
+document.addEventListener("DOMContentLoaded", () => {
+  renderOrders(); 
+  
+});
