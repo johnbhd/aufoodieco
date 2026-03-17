@@ -20,6 +20,8 @@ async function renderOrders() {
   preparingDiv.innerHTML = "";
   readyDiv.innerHTML = "";
 
+  orders.sort((a, b) => new Date(b.date) - new Date(a.date));
+
   orders.forEach(order => {
     const card = document.createElement("div");
     card.className = "order-item";

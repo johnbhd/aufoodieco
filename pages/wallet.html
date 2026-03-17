@@ -1,157 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wallet || AU Canteen System</title>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wallet || AU Canteen System</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="shortcut icon" href="../imgs/aufoodieco-logo.ico" type="image/x-icon">
-  <link rel="stylesheet" href="../css/style.css"/>
-  <link rel="stylesheet" href="../css/wallet.css"/>
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="shortcut icon" href="../imgs/aufoodieco-logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/wallet.css"/>
+  </head>
 
-<body>
+  <body>
 
-<div class="container">
+  <div class="container">
 
-  <!-- Sidebar -->
-  <aside class="sidebar sidebar-hidden" id="sidebar">
-    <img src="../imgs/aulogo.png" alt="AU LOGO">
-    <nav>
+    <!-- Sidebar -->
+    <aside class="sidebar sidebar-hidden" id="sidebar">
+      <img src="../imgs/aulogo.png" alt="AU LOGO">
+      <nav>
 
-      <a href="./homepage.html">
-        <i class="fas fa-home"></i>
-        <span>Home</span>
-      </a>
-      <a href="./orders.html">
-        <i class="fas fa-box"></i>
-        <span>Orders</span>
-      </a>
-      <a href="./wallet.html" class="active">
-        <i class="fa-solid fa-credit-card"></i>
-        <span>Wallet</span>
-      </a>
-      <a href="./profile.html">
-        <i class="fa-regular fa-user"></i>    
-        <span>Profile</span>
-      </a>
-      
-      <button id="logout-btn">
-          <i class="fas fa-sign-out-alt"></i>  
-          <span>Logout</span>
-      </button>
-    </nav>
-  </aside>
+        <a href="./homepage.html">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <a href="./orders.html">
+          <i class="fas fa-box"></i>
+          <span>Orders</span>
+        </a>
+        <a href="./wallet.html" class="active">
+          <i class="fa-solid fa-credit-card"></i>
+          <span>Wallet</span>
+        </a>
+        <a href="./profile.html">
+          <i class="fa-regular fa-user"></i>    
+          <span>Profile</span>
+        </a>
+        
+        <button id="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>  
+            <span>Logout</span>
+        </button>
+      </nav>
+    </aside>
 
-  <!-- Overlay -->
-  <div id="overlay" class="overlay"></div>
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+    <!-- Toast -->
+    <div id="toast" class="toast">
+      <div id="toast-box" class="toast-box">
 
-  <!-- Main Content -->
-  <main class="main">
-    <section class="menu-section" style="width: 100%;">
-
-      <!-- Top Navigation -->
-      <div class="top-nav">
-        <div class="nav-left">
-          <div class="title-mobile">
-            <button id="menu-btn" class="menu-btn">
-              <i class="fa-solid fa-bars"></i>
-            </button>
-            <h4>AU Canteen System</h4>
-          </div>
+        <div class="toast-icon">
+          <i class="fa-solid fa-check"></i>
         </div>
 
+        <span id="toast-message" class="toast-message"></span>
 
       </div>
+    </div>
+    <div id="toast-container" ></div>
+    <!-- Main Content -->
+    <main class="main">
+      <section class="menu-section" style="width: 100%;">
 
-      <!-- Wallet Content -->
-      <div class="content">
-        <div class="wallet-container">
-
-          <h2 class="page-title">Wallet Balance</h2>
-
-          <div class="balance-card">
-            <div class="gcash-header">
-              <div class="gcash-logo">GCash</div>
-              <div class="balance-amount">₱1,250.50</div>
-            </div>
-            <div class="balance-info">
-              <p class="label">Available Balance</p>
-              <p class="account">GCash No: 0917-123-4567</p>
+        <!-- Top Navigation -->
+        <div class="top-nav">
+          <div class="nav-left">
+            <div class="title-mobile">
+              <button id="menu-btn" class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <h4>AU Canteen System</h4>
             </div>
           </div>
 
-          <button class="cash-in-btn">
-            <i class="fas fa-plus-circle"></i> Cash In
-          </button>
 
-          <div class="history-section">
-            <h3>Payment History</h3>
-            <p class="history-subtitle">Recent Transactions</p>
-            <div class="history-scroll">
+        </div>
 
-              <div class="history-table">
-                <div class="history-header">
-                  <div class="col date">Date</div>
-                  <div class="col desc">Description</div>
-                  <div class="col amount">Amount</div>
-                  <div class="col status">Status</div>
-                  <div class="col receipt">Receipt</div>
-                </div>
-  
-                <div class="history-row">
-                  <div class="col date">Oct 26, 2023</div>
-                  <div class="col desc">Canteen Meal - Chicken Rice</div>
-                  <div class="col amount">₱85.00</div>
-                  <div class="col status"><span class="status-completed">Completed</span> <i class="fas fa-check-circle"></i></div>
-                  <div class="col receipt">
-                    <button class="receipt-btn"><i class="fas fa-receipt"></i> Receipt</button>
-                  </div>
-                </div>
-  
-                <div class="history-row">
-                  <div class="col date">Oct 25, 2023</div>
-                  <div class="col desc">Beverage - Iced Coffee</div>
-                  <div class="col amount">₱45.00</div>
-                  <div class="col status"><span class="status-completed">Completed</span> <i class="fas fa-check-circle"></i></div>
-                  <div class="col receipt">
-                    <button class="receipt-btn"><i class="fas fa-receipt"></i> Receipt</button>
-                  </div>
-                </div>
-  
-                <div class="history-row">
-                  <div class="col date">Oct 24, 2023</div>
-                  <div class="col desc">Snack - Cookies</div>
-                  <div class="col amount">₱30.00</div>
-                  <div class="col status"><span class="status-completed">Completed</span> <i class="fas fa-check-circle"></i></div>
-                  <div class="col receipt">
-                    <button class="receipt-btn"><i class="fas fa-receipt"></i> Receipt</button>
-                  </div>
-                </div>
-  
-                <div class="history-row">
-                  <div class="col date">Oct 23, 2023</div>
-                  <div class="col desc">Lunch Set - Beef Tapa</div>
-                  <div class="col amount">₱120.00</div>
-                  <div class="col status"><span class="status-completed">Completed</span> <i class="fas fa-check-circle"></i></div>
-                  <div class="col receipt">
-                    <button class="receipt-btn"><i class="fas fa-receipt"></i> Receipt</button>
-                  </div>
-                </div>
+        <!-- Wallet Content -->
+        <div class="content">
+          <div id="loader" class="content-loader">
+            <div class="spinner"></div>
+          </div>
+          <div class="wallet-container">
+            
+            <h2 class="page-title">Wallet Balance</h2>
+
+            <div class="balance-card">
+              <div class="gcash-header">
+                <div class="gcash-logo">GCash</div>
+                <div class="balance-amount">₱1,250.50</div>
+              </div>
+              <div class="balance-info">
+                <p class="label">Available Balance</p>
+                <p class="account">GCash No: 0917-123-4567</p>
               </div>
             </div>
+
+            <button class="cash-in-btn">
+              <i class="fas fa-plus-circle"></i> Cash In
+            </button>
+
+              <div class="history-section">
+                  <h3>Payment History</h3>
+                  <p class="history-subtitle">Recent Transactions</p>
+                  <div class="history-scroll">
+                    <div class="history-controls">
+                      <input type="text" id="search-input" placeholder="Search transactions..." />
+
+                      <select id="sort-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                      </select>
+                    </div>
+                    <div class="history-table" id="history-table"></div>
+                    <div class="pagination" id="pagination"></div>
+                   </div>
+               </div>
+            </div>
+
           </div>
-
         </div>
-      </div>
 
-    </section>
-  </main>
-</div>
+      </section>
+    </main>
+  </div>
 
-<script type="module" src="../script/main.js"></script>
-<script type="module" src="../script/modules/utils/script.js"></script>
+  <script type="module" src="../script/main.js"></script>
+  <script type="module" src="../script/modules/utils/script.js"></script>
+  <script type="module" src="../script/modules/wallet/wallet.js"></script>
 
-</body>
-</html>
+  </body>
+  </html>

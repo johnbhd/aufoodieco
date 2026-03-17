@@ -4,85 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profile Page || FoodieCart</title>
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="shortcut icon" href="../imgs/aufoodieco-logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/style.css"/>
   <link rel="stylesheet" href="../css/profile.css"/>
 </head>
-
 <body>
-
 <div class="container">
 
-  <!-- Sidebar -->
   <aside class="sidebar sidebar-hidden" id="sidebar">
     <img src="../imgs/aulogo.png" alt="AU LOGO">
     <nav>
-
-      <a href="./homepage.html">
-          <i class="fas fa-home"></i>
-          <span>Home</span>
-      </a>
-      <a href="./orders.html">
-          <i class="fas fa-box"></i>
-          <span>Orders</span>
-      </a>
-      <a href="./wallet.html">
-          <i class="fa-solid fa-credit-card"></i>
-          <span>Wallet</span>
-      </a>
-      <a href="./profile.html">
-          <i class="fa-regular fa-user"></i>    
-          <span>Profile</span>
-      </a>
-      <button id="logout-btn">
-          <i class="fas fa-sign-out-alt"></i>  
-          <span>Logout</span>
-      </button>
+      <a href="./homepage.html"><i class="fas fa-home"></i><span>Home</span></a>
+      <a href="./orders.html"><i class="fas fa-box"></i><span>Orders</span></a>
+      <a href="./wallet.html"><i class="fa-solid fa-credit-card"></i><span>Wallet</span></a>
+      <a href="./profile.html"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+      <button id="logout-btn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
     </nav>
   </aside>
 
+
   <!-- Overlay -->
   <div id="overlay" class="overlay"></div>
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <div id="toast-box" class="toast-box">
 
-  <!-- Main Content -->
-  <main class="main">
-
-    <section class="menu-section" style="width: 100%; ">
-
-      <!-- Top Navigation -->
-      <div class="top-nav" >
-
-        <div class="nav-left" >
-          <div class="title-mobile">
-              <button id="menu-btn" class="menu-btn">
-                <i class="fa-solid fa-bars"></i>
-              </button>
-              <h4>AU Canteen System</h4>
-          </div>
-         
-        </div>
-
-     
+      <div class="toast-icon">
+        <i class="fa-solid fa-check"></i>
       </div>
 
-   <div class="content">
+      <span id="toast-message" class="toast-message"></span>
+
+    </div>
+  </div>
+  <div id="toast-container" ></div>
+
+  <main class="main">
+    <section class="menu-section" style="width: 100%;">
+      <div class="top-nav">
+        <div class="nav-left">
+          <div class="title-mobile">
+            <button id="menu-btn" class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+            <h4>AU Canteen System</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div id="loader" class="content-loader">
+          <div class="spinner"></div>
+        </div>
         <div class="profile-container">
           <div class="profile-header">
             <div class="profile-avatar">
               <img src="../imgs/aubg.jpg" alt="Profile Picture" id="profile-img">
-              <label for="avatar-upload" class="avatar-edit-btn">
-                <i class="fas fa-camera"></i>
-              </label>
+              <label for="avatar-upload" class="avatar-edit-btn"><i class="fas fa-camera"></i></label>
               <input type="file" id="avatar-upload" accept="image/*" hidden>
             </div>
             <div class="profile-info">
-              <h2 id="display-name">John Benedict M. Villegas</h2>
-              <p class="profile-role">Student</p>
+              <h2 id="display-name">Full Name</h2>
+              <p class="profile-role">Customer</p>
             </div>
           </div>
 
@@ -91,22 +73,22 @@
             <form id="profile-form" class="profile-form">
               <div class="form-group">
                 <label for="fullName">Full Name</label>
-                <input type="text" id="fullName" name="fullName" value="John Benedict M. Villegas" required>
+                <input type="text" id="fullName" name="fullName" >
               </div>
 
               <div class="form-group">
                 <label for="studentId">Student ID / User ID</label>
-                <input type="text" id="studentId" name="studentId" value="24-001234" required>
+                <input type="text" id="studentId" name="studentId" >
               </div>
 
               <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" value="aujscvillegas@gmail.com" required>
+                <input type="email" id="email" name="email" readonly>
               </div>
 
               <div class="form-group">
                 <label for="course">Course / Department</label>
-                <input type="text" id="course" name="course" value="BS Information Technology" placeholder="e.g. BS Information Technology">
+                <input type="text" id="course" name="course" placeholder="e.g. BS Information Technology">
               </div>
 
               <div class="form-group">
@@ -114,31 +96,26 @@
                 <select id="yearLevel" name="yearLevel">
                   <option value="">Select Year Level</option>
                   <option value="1">1st Year</option>
-                  <option value="2" selected>2nd Year</option>
+                  <option value="2">2nd Year</option>
                   <option value="3">3rd Year</option>
                   <option value="4">4th Year</option>
                 </select>
               </div>
 
               <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                  <i class="fas fa-save"></i> Save Changes
-                </button>
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='./orders.html'">
-                  <i class="fas fa-arrow-left"></i> Back to Orders
-                </button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='./orders.html'"><i class="fas fa-arrow-left"></i> Back to Orders</button>
               </div>
             </form>
           </div>
-
-       
         </div>
       </div>
     </section>
   </main>
 </div>
+
 <script type="module" src="../script/main.js"></script>
 <script type="module" src="../script/modules/utils/script.js"></script>
-<script type="module" src="../script/modules/cart/orders.js"></script>
+<script type="module" src="../script/modules/profile/userProfile.js"></script>
 </body>
 </html>

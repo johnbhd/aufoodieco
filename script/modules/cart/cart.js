@@ -86,10 +86,15 @@ export function checkoutOrder(cart, total) {
   const usedNumbers = orders.map(o => o.id);
   const orderId = generateOrderId();
 
+  const sessionUser = JSON.parse(sessionStorage.getItem("session"));
+
   const newOrder = {
     id: orderId,
     items: cart,
     total: total,
+    email: sessionUser.email || "NA",
+    name: sessionUser.name,
+    role: sessionUser.role,
     date: new Date().toLocaleString(),
     status: "new"
   };

@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { firebaseConfig } from "../../config/firebase-config.js";
-import { getFirestore, collection, query, where, addDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+import { getFirestore, collection, query, where, doc, getDoc, setDoc, serverTimestamp, getDocs } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 import { toastSuccess, toastError } from "../utils/utils.js";
 
 const app = initializeApp(firebaseConfig);
@@ -80,15 +80,16 @@ export async function doRegister() {
   }
 
   try {
-    const q = query(collection(db, "users"), where("email", "==", email));
-    const querySnapshot = await getDocs(q);
+    // Use email as the document ID
+    const userDocRef = doc(db, "users", email);
+    const userSnapshot = await getDoc(userDocRef);
 
-    if (!querySnapshot.empty) {
+    if (userSnapshot.exists()) {
       toastError("Email already registered! Try another email.");
       return;
     }
 
-    await addDoc(collection(db, "users"), {
+    await setDoc(userDocRef, {
       name: name,
       email: email,
       password: password,
@@ -97,7 +98,10 @@ export async function doRegister() {
     });
 
     toastSuccess(`Registered!\nEmail: ${email}`);
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+
+    }, 2000)
 
   } catch (error) {
     console.error("Error registering: ", error);
