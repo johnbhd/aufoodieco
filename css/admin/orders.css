@@ -1,0 +1,65 @@
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: auto;
+}
+.delete-btn i {
+  font-size: 16px;
+  color: #e53935;
+  transition: 0.2s ease;
+}
+.delete-btn:hover i {
+  transform: scale(1.2);
+  color: #c62828;
+}
+.order-actions {
+  display: flex;
+  align-items: center;
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;             
+    align-items: center;        
+    justify-content: center;    
+    z-index: 999;
+}
+
+.popup-field {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 6px;
+    width: 100%;
+    max-width: 400px;          
+}
+.popup-field h4 {
+    padding: 10px 0;
+    font-size: 1.3rem;
+}
+form a {
+    text-decoration: none;
+    color: black;
+}
+.btnModal {
+    display: flex;
+    justify-content: center;
+    gap: 4vh;
+    padding-top: 20px;
+}
+#noBtn, #yesBtn {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#yesBtn {
+    background-color: green;
+    border: none;
+}
+#noBtn {
+    background-color: red;
+    border: none;
+}
