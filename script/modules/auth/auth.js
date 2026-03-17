@@ -9,19 +9,30 @@ const navLinks = document.querySelector('.nav-links');
 const overlay = document.querySelector('.overlay');
 const btnAbout = document.querySelector(".btn-about");
 const btnFeatures = document.querySelector(".btn-features");
+const btnGuest = document.querySelector(".btn-guest");
 const year = document.getElementById("year");
 
 const currentDate = new Date();
 const currentYear = currentDate.getFullYear();
 year.textContent = currentYear;
-      const raw = sessionStorage.getItem("session");
+
+const raw = sessionStorage.getItem("session");
 const get = raw ? JSON.parse(raw) : null;
 console.log(get);
+
 btnAbout.addEventListener('click', () => {
   window.location.href = "./pages/features.html"
 })
 btnFeatures.addEventListener('click', () => {
   window.location.href = "./pages/developers.html"
+})
+
+btnGuest.addEventListener('click', () => {
+    sessionStorage.setItem("session", JSON.stringify({
+      name: "Guest",
+      role: "guest"
+    }));
+    window.location.href = "./pages/homepage.html"
 })
 
 menuBtn.addEventListener('click', () => {
