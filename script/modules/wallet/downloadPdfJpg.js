@@ -1,7 +1,4 @@
-const pdfBtn = document.getElementById("btn-pdf");
-const jpgBtn = document.getElementById("btn-jpg");
-
-pdfBtn.addEventListener("click", () => {
+export function downloadPDF() {
   const receipt = document.querySelector(".receipt-box");
 
   receipt.classList.add("black-white");
@@ -16,9 +13,9 @@ pdfBtn.addEventListener("click", () => {
 
     receipt.classList.remove("black-white");
   });
-});
+}
 
-jpgBtn.addEventListener("click", () => {
+export function downloadJPG() {
   const receipt = document.querySelector(".receipt-box");
   receipt.classList.add("black-white");
 
@@ -30,4 +27,4 @@ jpgBtn.addEventListener("click", () => {
 
     receipt.classList.remove("black-white");
   });
-});
+}

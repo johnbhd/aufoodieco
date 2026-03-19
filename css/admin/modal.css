@@ -111,7 +111,7 @@
 #closeBtn:hover, #closeMenuBtn:hover, #cancelDelete:hover, #closeOrderBtn:hover  {
     background-color: #c82333;
 }
-select.edit-category,
+select.edit-category, select#edit-type,
 #edit-status {
     width: 100%;
     padding: 8px 10px;
@@ -126,7 +126,7 @@ select.edit-category,
 }
 
 /* Focus effect */
-select.edit-category:focus,
+select.edit-category:focus, select#edit-type:focus,
 #edit-status:focus {
     border-color: #3B82F6; /* blue */
     box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);

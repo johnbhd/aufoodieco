@@ -2,6 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/fireba
 import { firebaseConfig } from "../../config/firebase-config.js";
 import { getFirestore, getDocs, collection, query, where } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 import { toastSuccess, toastError } from "../utils/utils.js";
+import { openReceipt } from "./modalReceipt.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -17,6 +18,8 @@ let currentPage = 1;
 const itemsPerPage = 5;
 
 const loader = document.getElementById("loader");
+const modal = document.getElementById("receiptModal");
+const receiptActions = document.getElementById("receipt-actions");
 
 async function initWallet(){
   await getOrderByUser();
@@ -61,7 +64,7 @@ const ordersRow = pageItems.length > 0
                 ${
                     order.status.toLowerCase() === "new"
                     ? `<div class="col noreceipt">-</div>`
-                    : `<div class="col receipt"><button class="receipt-btn"><i class="fas fa-receipt"></i> Receipt</button></div>`
+                    : `<div class="col receipt"><button class="receipt-btn" data-id="${order.id}"><i class="fas fa-receipt"></i> Receipt</button></div>`
                 }
             </div>
         `;
@@ -92,6 +95,26 @@ const ordersRow = pageItems.length > 0
         paginationDiv.appendChild(btn);
     }
 }
+
+document.addEventListener("click", (e) => {
+    const receiptBtn = e.target.closest(".receipt-btn");
+    const closeBtn = e.target.closest("#closeReceipt");
+    if (receiptBtn) {
+        const orderId = receiptBtn.dataset.id;
+        const order = transactions.find(o => o.id === orderId);
+        if (!order) return;
+        sessionStorage.setItem("selectedOrder", JSON.stringify(order));
+        
+        openReceipt();
+
+
+    }
+    if (closeBtn || e.target === modal) {
+        modal.style.display = "none";
+        receiptActions.style.display = "none";
+        sessionStorage.setItem("selectedOrder", "");
+    }
+});
 
 searchInput.addEventListener("input", () => { currentPage = 1; renderTransactions(); });
 sortSelect.addEventListener("change", () => { currentPage = 1; renderTransactions(); });

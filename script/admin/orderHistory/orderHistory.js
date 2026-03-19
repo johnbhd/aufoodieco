@@ -18,11 +18,10 @@ async function initOrderHistory() {
 function updateOrderModal(order) {
     const modal = document.getElementById("popup-details");
     modal.style.display = "flex";
-    
+
     const itemsHTML = order.items.map((item, index) => `
         <div class="item-row">
             <p><strong>Name:</strong> ${item.name}</p>
-
             <p><strong>Category:</strong>
                 <select class="edit-category" data-index="${index}">
                     <option value="" disabled ${!item.category ? "selected" : ""}>Select Category</option>
@@ -32,7 +31,6 @@ function updateOrderModal(order) {
                     <option value="Others" ${item.category === "Others" ? "selected" : ""}>Others</option>
                 </select>
             </p>
-
             <p><strong>Qty:</strong> ${item.qty}</p>
             <p><strong>Price:</strong> ₱${item.price}</p>
             <hr>
@@ -53,8 +51,16 @@ function updateOrderModal(order) {
                 </select>
             </p>
 
+            <p><strong>Type:</strong>
+                <select id="edit-type">
+                    <option value="" disabled ${!order.type ? "selected" : ""}>Select Type</option>
+                    <option value="Cash" ${order.type === "Cash" ? "selected" : ""}>Cash</option>
+                    <option value="GCash" ${order.type === "GCash" ? "selected" : ""}>GCash</option>
+                </select>
+            </p>
+
             <div class="items-section">
-                <h5>Items</h5> <br>
+                <h5 style= "font-size: 1rem; padding-bottom: 10px;">Items</h5> 
                 ${itemsHTML}
             </div>
 
@@ -71,8 +77,8 @@ function updateOrderModal(order) {
     document.getElementById("saveOrderBtn").addEventListener("click", async () => {
 
         const status = document.getElementById("edit-status").value;
+        const type = document.getElementById("edit-type").value || "Cash"; // default if empty
 
-        // update categories
         const categoryInputs = document.querySelectorAll(".edit-category");
 
         const updatedItems = order.items.map((item, index) => ({
@@ -80,13 +86,13 @@ function updateOrderModal(order) {
             category: categoryInputs[index].value
         }));
 
-        // AUTO COMPUTE TOTAL 🔥
         const newTotal = updatedItems.reduce((sum, item) => {
             return sum + (item.price * item.qty);
         }, 0);
 
         const updatedOrder = {
             status,
+            type,
             items: updatedItems,
             total: newTotal
         };
