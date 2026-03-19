@@ -4,11 +4,13 @@
   padding: 0 1.5rem;
 }
 
-.page-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #222;
-  font-weight: 600;
+.wallet-header {
+    margin-bottom: 10px;
+}
+.wallet-header h3 {
+    font-size: 1.45rem;
+  color: #333;
+
 }
 
 .balance-card {
@@ -32,7 +34,12 @@
   font-weight: 700;
   letter-spacing: 1px;
 }
-
+.balance-info {
+  display: flex;
+}
+.info-balance {
+  flex: 1;
+}
 .balance-amount {
   font-size: 2.4rem;
   font-weight: 700;
@@ -50,16 +57,15 @@
 }
 
 .cash-in-btn {
-  width: 100%;
   background: #0066cc;
   color: white;
   border: none;
   padding: 1rem;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   border-radius: 10px;
   cursor: pointer;
-  margin-bottom: 2.5rem;
+
   transition: background 0.2s;
   display: flex;
   align-items: center;
@@ -70,7 +76,9 @@
 .cash-in-btn:hover {
   background: #0055aa;
 }
-
+.history-section {
+  padding-top: 20px;
+}
 .history-section h3 {
   font-size: 1.45rem;
   margin: 0 0 0.4rem 0;
@@ -161,7 +169,7 @@
 .history-controls {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin: 10px 0;
   gap: 10px;
 }
 
@@ -218,8 +226,110 @@
   background: #007bff;
   color: white;
 }
+/* HEADER */
+
+.expense-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* fix alignment */
+}
+
+.header-expense {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.header-expense h3 {
+  margin: 0;
+}
+
+.history-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.date-picker {
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+/* WRAPPER */
+
+.expense-wrapper {
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 15px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* LEFT SIDE */
+
+.expense-info {
+  width: 50%;
+  padding: 0 30px;
+}
+
+.expense-info h4 {
+  margin: 0;
+  color: #555;
+  font-size: 2rem;
+}
+
+.total-expense {
+  margin: 5px 0;
+  font-size: 28px;
+  color: #2e7d32;
+}
+
+.expense-desc {
+  font-size: 13px;
+  color: #666;
+  max-width: 300px;
+}
+
+
+/* RIGHT SIDE PIE */
+
+.expense-con {
+  width: 300px;
+  height: 300px;
+}
+
+#expenseChart {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* TITLE */
+
+.expense-section h3 {
+  font-size: 1.45rem;
+  color: #333;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  .expense-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .expense-info {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+  }
+  .expense-wrapper {
+    flex-direction: column;
+  }
   .wallet-container { 
     padding: 10px;
   }

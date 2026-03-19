@@ -9,6 +9,9 @@
     <link rel="shortcut icon" href="../imgs/aufoodieco-logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css"/>
     <link rel="stylesheet" href="../css/wallet.css"/>
+    <link rel="stylesheet" href="../css/modalReceipt.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   </head>
 
   <body>
@@ -83,8 +86,12 @@
             <div class="spinner"></div>
           </div>
           <div class="wallet-container">
-            
-            <h2 class="page-title">Wallet Balance</h2>
+            <div class="wallet-header">
+              <h3>Wallet Balance</h3>
+              <p class="history-subtitle">
+                Monitor your expense in aufoodieco
+              </p>
+            </div>
 
             <div class="balance-card">
               <div class="gcash-header">
@@ -92,15 +99,49 @@
                 <div class="balance-amount">₱1,250.50</div>
               </div>
               <div class="balance-info">
-                <p class="label">Available Balance</p>
-                <p class="account">GCash No: 0917-123-4567</p>
+                <div class="info-balance">
+                  <p class="label">Available Balance</p>
+                  <p class="account">GCash No: 0917-123-4567</p>
+                </div>
+                <button class="cash-in-btn">
+                  <i class="fas fa-plus-circle"></i> Cash In
+                </button>
               </div>
             </div>
 
-            <button class="cash-in-btn">
-              <i class="fas fa-plus-circle"></i> Cash In
-            </button>
 
+              <div class="expense-section">
+                <div class="expense-header">
+                  <div class="header-expense">
+                    <h3>Expense Monitoring</h3>
+                    <p class="history-subtitle">
+                      Monitor your expense in aufoodieco
+                    </p>
+                  </div>
+                  <div>
+                    <input type="date" class="date-picker">
+                  </div>
+                </div>
+
+                <div class="expense-wrapper">
+
+                  <div class="expense-info">
+                    <h4>Total Expense</h4>
+                    <h2 class="total-expense">₱ 1,250.50</h2>
+
+                    <p class="expense-desc">
+                      This chart shows how your expenses are divided between foods,
+                      drinks, snacks, and other items inside AU FoodieCo.
+                    </p>
+                  </div>
+
+                  <div class="expense-con">
+                    <canvas id="expenseChart"></canvas>
+                  </div>
+
+                </div>
+
+              </div>
               <div class="history-section">
                   <h3>Payment History</h3>
                   <p class="history-subtitle">Recent Transactions</p>
@@ -129,6 +170,7 @@
   <script type="module" src="../script/main.js"></script>
   <script type="module" src="../script/modules/utils/script.js"></script>
   <script type="module" src="../script/modules/wallet/wallet.js"></script>
+  <script type="module" src="../script/modules/wallet/expenseMonitoring.js"></script>
 
   </body>
   </html>
