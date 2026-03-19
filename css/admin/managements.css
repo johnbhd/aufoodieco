@@ -4,14 +4,14 @@
     flex: 1;
 }
 
-form {
+.wrap-con {
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100%; /* allow full width */
     max-width: 100%; /* optional */
 }
-form h4 {
+.wrap-con h4 {
     font-size: 2rem;
 }
 .head-con {

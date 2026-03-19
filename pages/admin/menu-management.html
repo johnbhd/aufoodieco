@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page || FoodieCart</title>
+  <title>Menu Page - Admin || FoodieCart</title>
 
   <link
     rel="stylesheet"
@@ -12,6 +12,7 @@
   <link rel="shortcut icon" href="../../imgs/aufoodieco-logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../css/style.css"/>
   <link rel="stylesheet" href="../../css/admin/managements.css"/>
+  <link rel="stylesheet" href="../../css/admin/modal.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -55,6 +56,8 @@
   <!-- Overlay -->
   <div id="overlay" class="overlay"></div>
   
+  <div class="popup-overlay" id="popup-details"></div>
+  
   <div id="toast-container" ></div>
   <!-- Main Content -->
   <main class="main">
@@ -74,7 +77,7 @@
       <div class="content">
         <div class="wrapper">
 
-            <form>
+            <div class= "wrap-con">
                 <h4>Menu Management</h4>
                 <div class="head-con">
                     <div class="searchdiv">
@@ -84,21 +87,21 @@
                         </button>
                     </div>
                     <div class="create-div">
-                        <a href="#" class="create-btn">
+                        <button class="create-btn">
                             <span style="margin-right: 5px; font-size: 1.4rem;">+</span>
                             <span class="mobile-block">Add Menu</span>
-                        </a>
+                        </button>
                     </div>
+                </div>
+                <div id="loader" class="content-loader">
+                    <div class="spinner"></div>
                 </div>
 
                 <div class="table-div">
                   <table id="menu-management">
-                    <div id="loader" class="content-loader">
-                        <div class="spinner"></div>
-                    </div>
                   </table>
                 </div>
-            </form>
+            </div>
         </div>
         <!-- Footer -->
         <footer>

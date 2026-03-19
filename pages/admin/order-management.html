@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home Page || FoodieCart</title>
+  <title>Order Page - Admin || FoodieCart</title>
 
   <link
     rel="stylesheet"
@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../css/style.css"/>
   <link rel="stylesheet" href="../../css/order-page.css"/>
   <link rel="stylesheet" href="../../css/admin/management.css"/>
+  <link rel="stylesheet" href="../../css/admin/modal.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -57,8 +58,11 @@
   <div id="overlay" class="overlay"></div>
   
   <div id="toast-container" ></div>
+  <!--Modal-->
+  <div class="popup-overlay" id="popup-delete"></div>
   <!-- Main Content -->
   <main class="main">
+    
     <section class="menu-section" style="width: 100%;">
       <!-- Top Navigation -->
       <div class="top-nav">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Management Page || FoodieCart</title>
+  <title>User Page - Admin || FoodieCart</title>
 
   <link
     rel="stylesheet"
@@ -12,6 +12,7 @@
   <link rel="shortcut icon" href="../../imgs/aufoodieco-logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="../../css/style.css"/>
   <link rel="stylesheet" href="../../css/admin/managements.css"/>
+  <link rel="stylesheet" href="../../css/admin/modal.css"/>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -54,7 +55,10 @@
 
   <!-- Overlay -->
   <div id="overlay" class="overlay"></div>
-  
+  <div class="popup-overlay" id="popup-details"></div>
+  <!-- Add User Modal -->
+  <div class="popup-overlay" id="popup-add-user" style="display: none;"></div>
+  <div class="popup-overlay" id="popup-delete"></div>
   <div id="toast-container" ></div>
   <!-- Main Content -->
   <main class="main">
@@ -75,7 +79,7 @@
      
         <div class="wrapper">
 
-            <form>
+            <div class= "wrap-con">
                 <h4>User Management</h4>
                 <div class="head-con">
                     <div class="searchdiv">
@@ -92,14 +96,14 @@
                     </div>
                 </div>
 
-              <div class="table-div">
-                  <table id="table-user">
                     <div id="loader" class="content-loader">
                         <div class="spinner"></div>
                     </div>
+              <div class="table-div">
+                  <table id="table-user">
                   </table>
               </div>
-            </form>
+            </div>
         </div>
         <!-- Footer -->
         <footer>
