@@ -153,6 +153,15 @@
     background-color: #880303;
 }
 
+.modal-btn #go-orders {
+    background-color: #28a745; /* Bootstrap success green */
+    color: white;
+}
+
+.modal-btn #go-orders:hover {
+    background-color: #1e7e34; /* Darker green on hover */
+}
+
 .modal-btn button:last-child{
     background-color: #494955;
     color: white;

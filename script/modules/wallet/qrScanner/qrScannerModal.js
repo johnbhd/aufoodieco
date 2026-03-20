@@ -1,58 +1,96 @@
-let html5QrCode; // global so we can stop camera
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
+import { firebaseConfig } from "../../../config/firebase-config.js";
+import { getFirestore, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+import { toastSuccess, toastError } from "../../utils/utils.js";
 
-function openScannerModal() {
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
+let html5QrCode;
+
+export function openScannerModal() {
   const modal = document.querySelector('.modal-con');
-
   modal.style.display = "flex";
 
   modal.innerHTML = `
     <div class="modal">
-
       <div class="modal-title">
         <h2>Scan QR Code</h2>
       </div>
-
       <div class="modal-body">
         <div id="reader"></div>
       </div>
-
       <div class="modal-btn">
         <button id="close-scan">Cancel</button>
       </div>
-
     </div>
   `;
-  startScanner()
-}
-function startScanner() {
 
   html5QrCode = new Html5Qrcode("reader");
 
   html5QrCode.start(
-    { facingMode: "environment" }, // back cam
-    {
-      fps: 10,
-      qrbox: 250
-    },
-    (decodedText) => {
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    async (decodedText) => {
+      try {
+        // Stop scanner
+        await html5QrCode.stop();
+        html5QrCode.clear();
 
-      console.log("Scanned:", decodedText);
+        // Update Firebase
+        const orderRef = doc(db, "pendingGcashOrders", decodedText);
+        const orderSnap = await getDoc(orderRef);
 
-      html5QrCode.stop().then(() => {
+        if (orderSnap.exists() && orderSnap.data().status === "pending") {
+          await updateDoc(orderRef, { status: "paid" });
+        } else {
+          toastError("Order not found or already paid!");
+          return;
+        }
 
-        document.querySelector('.modal-con').style.display = "none";
+        // Show success modal
+        modal.innerHTML = `
+          <div class="modal">
+            <div class="modal-title">
+              <h2>Payment Success!</h2>
+              <p>Order: ${decodedText}</p>
+            </div>
+            <div class="modal-body">
+              <p>Payment has been confirmed.</p>
+            </div>
+            <div class="modal-btn">
+              <button id="close-success">Close</button>
+            </div>
+          </div>
+        `;
 
+        document.getElementById("close-success").addEventListener("click", () => {
+          modal.style.display = "none";
+        });
 
-        window.location.href = decodedText;
+        toastSuccess("Payment success! Order: " + decodedText);
 
-      });
-
+      } catch (err) {
+        console.error("Error completing scan:", err);
+        toastError("Something went wrong. Try again.");
+      }
     },
     (error) => {
- 
+      console.warn("QR scan error:", error);
     }
-  );
+  ).catch((err) => {
+    console.error("Failed to start QR scanner:", err);
+    toastError("Cannot access camera. Please check permissions or try again.");
+  });
+
+  // Cancel button
+  document.getElementById("close-scan").addEventListener("click", async () => {
+    modal.style.display = "none";
+    if (html5QrCode) {
+      await html5QrCode.stop().catch(() => {});
+      html5QrCode.clear();
+    }
+  });
 }
 
 document.addEventListener("click", (e) => {
