@@ -1,64 +1,95 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { firebaseConfig } from "../../config/firebase-config.js";
-import { getFirestore, getDocs, collection, query, where } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
-import { toastSuccess, toastError } from "../utils/utils.js";
-import { openReceipt } from "./modalReceipt.js";
+import {
+  getFirestore,
+  getDocs,
+  collection,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+const user = JSON.parse(sessionStorage.getItem("session"));
+
 const ctx = document.getElementById("expenseChart");
 
-new Chart(ctx, {
-  type: "pie",
+async function loadExpenseChart() {
+  const q = query(collection(db, "orders"), where("email", "==", user.email));
+  const snapshot = await getDocs(q);
 
-  data: {
-    labels: ["Foods", "Drinks", "Snacks", "Others"],
-    datasets: [{
-      data: [500, 300, 200, 100],
-      backgroundColor: [
-        "#4CAF50",
-        "#2196F3",
-        "#FFC107",
-        "#FF5722"
-      ]
-    }]
-  },
+  const categoryTotals = {};
 
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
+  snapshot.docs.forEach(doc => {
+    const data = doc.data();
 
-    plugins: {
+    if (!data.items) return;
 
-      legend: {
-        position: "right",
-        labels: {
-          boxWidth: 15,
-          boxHeight: 15
-        }
-      },
+    data.items.forEach(item => {
+      const category = item.category || "Others";
+      const total = Number(item.price || 0) * Number(item.qty || 1);
 
-      datalabels: {
-        color: "#fff",
-        font: {
-          weight: "bold",
-          size: 14
-        },
-
-        formatter: (value, context) => {
-          const data = context.chart.data.datasets[0].data;
-
-          const total = data.reduce((a, b) => a + b, 0);
-
-          const percentage = ((value / total) * 100).toFixed(1) + "%";
-
-          return percentage;
-        }
+      if (!categoryTotals[category]) {
+        categoryTotals[category] = 0;
       }
 
-    }
-  },
+      categoryTotals[category] += total;
+    });
+  });
 
-  plugins: [ChartDataLabels]
-});
+  const labels = Object.keys(categoryTotals);
+  const values = Object.values(categoryTotals);
+
+  renderChart(labels, values);
+}
+
+function renderChart(labels, values) {
+  new Chart(ctx, {
+    type: "pie",
+    data: {
+      labels,
+      datasets: [
+        {
+          data: values,
+          backgroundColor: [
+            "#4CAF50",
+            "#2196F3",
+            "#FFC107",
+            "#FF5722",
+            "#9C27B0",
+            "#00BCD4"
+          ]
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "right",
+          labels: {
+            boxWidth: 15,
+            boxHeight: 15
+          }
+        },
+        datalabels: {
+          color: "#fff",
+          font: {
+            weight: "bold",
+            size: 14
+          },
+          formatter: (value, context) => {
+            const data = context.chart.data.datasets[0].data;
+            const total = data.reduce((a, b) => a + b, 0);
+            return ((value / total) * 100).toFixed(1) + "%";
+          }
+        }
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+}
+
+loadExpenseChart();

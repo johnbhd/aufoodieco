@@ -1,15 +1,24 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { firebaseConfig } from "../../../config/firebase-config.js";
-import { getFirestore, doc, updateDoc, getDoc } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  updateDoc,
+  getDoc,
+  getDocs,
+  collection,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-firestore.js";
 import { toastSuccess, toastError } from "../../utils/utils.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const user = JSON.parse(sessionStorage.getItem("session"));
 let html5QrCode;
 
 export function openScannerModal() {
-  const modal = document.querySelector('.modal-con');
+  const modal = document.querySelector(".modal-con");
   modal.style.display = "flex";
 
   modal.innerHTML = `
@@ -33,30 +42,54 @@ export function openScannerModal() {
     { fps: 10, qrbox: 250 },
     async (decodedText) => {
       try {
-        // Stop scanner
         await html5QrCode.stop();
         html5QrCode.clear();
 
-        // Update Firebase
         const orderRef = doc(db, "pendingGcashOrders", decodedText);
         const orderSnap = await getDoc(orderRef);
-
-        if (orderSnap.exists() && orderSnap.data().status === "pending") {
-          await updateDoc(orderRef, { status: "paid" });
-        } else {
-          toastError("Order not found or already paid!");
+        if (!orderSnap.exists()) {
+          toastError("Order not found!");
           return;
         }
 
-        // Show success modal
+        const orderData = orderSnap.data();
+        if (orderData.status !== "pending") {
+          toastError("Order already paid!");
+          return;
+        }
+
+        const orderTotal = Number(orderData.total || 0);
+        const qUser = query(collection(db, "users"), where("email", "==", user.email));
+        const userSnap = await getDocs(qUser);
+        if (userSnap.empty) {
+          toastError("User not found!");
+          return;
+        }
+
+        const userDoc = userSnap.docs[0];
+        const userRef = doc(db, "users", userDoc.id);
+        const userData = userDoc.data();
+        const currentBalance = Number(userData.eMoney || 0);
+
+        if (currentBalance < orderTotal) {
+          toastError("Insufficient balance!");
+          return;
+        }
+
+        const newBalance = currentBalance - orderTotal;
+
+        await updateDoc(userRef, { eMoney: newBalance });
+        await updateDoc(orderRef, { status: "paid", paidAt: new Date() });
+
         modal.innerHTML = `
           <div class="modal">
             <div class="modal-title">
               <h2>Payment Success!</h2>
-              <p>Order: ${decodedText}</p>
+              <p>Order ID: ${decodedText}</p>
             </div>
             <div class="modal-body">
-              <p>Payment has been confirmed.</p>
+              <p>₱${orderTotal} has been deducted.</p>
+              <p>New Balance: ₱${newBalance}</p>
             </div>
             <div class="modal-btn">
               <button id="close-success">Close</button>
@@ -68,22 +101,15 @@ export function openScannerModal() {
           modal.style.display = "none";
         });
 
-        toastSuccess("Payment success! Order: " + decodedText);
-
+        toastSuccess(`Payment success! ₱${orderTotal} deducted`);
       } catch (err) {
-        console.error("Error completing scan:", err);
-        toastError("Something went wrong. Try again.");
+        console.error(err);
+        toastError("Something went wrong!");
       }
     },
-    (error) => {
-      console.warn("QR scan error:", error);
-    }
-  ).catch((err) => {
-    console.error("Failed to start QR scanner:", err);
-    toastError("Cannot access camera. Please check permissions or try again.");
-  });
+    (error) => console.warn("QR error:", error)
+  ).catch(() => toastError("Camera not accessible!"));
 
-  // Cancel button
   document.getElementById("close-scan").addEventListener("click", async () => {
     modal.style.display = "none";
     if (html5QrCode) {
@@ -94,15 +120,7 @@ export function openScannerModal() {
 }
 
 document.addEventListener("click", (e) => {
-    const iconScanner = e.target.closest("#wallet-scannerIcon");
-    const closeModal = e.target.closest("#close-scan");
-    const modal = document.querySelector('.modal-con');
-
-    if (iconScanner) {
-        openScannerModal()
-    }
-
-    if (closeModal) {
-        modal.style.display = "none"
-    }
-})
+  if (e.target.closest("#wallet-scannerIcon")) {
+    openScannerModal();
+  }
+});
