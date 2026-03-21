@@ -27,7 +27,14 @@ export function openScannerModal() {
         <h2>Scan QR Code</h2>
       </div>
       <div class="modal-body">
-        <div id="reader"></div>
+        <div id="reader">
+          <div class="scanner-frame">
+            <div class="corner tl"></div>
+            <div class="corner tr"></div>
+            <div class="corner bl"></div>
+            <div class="corner br"></div>
+          </div>
+        </div>
       </div>
       <div class="modal-btn">
         <button id="close-scan">Cancel</button>
