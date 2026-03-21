@@ -12,19 +12,35 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const user = JSON.parse(sessionStorage.getItem("session"));
-
 const ctx = document.getElementById("expenseChart");
+const datePicker = document.querySelector(".date-picker");
+const totalExpenseEl = document.getElementById("sum-expense");
 
-async function loadExpenseChart() {
+let chartInstance = null;
+
+async function loadExpenseChart(selectedDate = null) {
   const q = query(collection(db, "orders"), where("email", "==", user.email));
   const snapshot = await getDocs(q);
 
   const categoryTotals = {};
+  let totalExpense = 0;
 
   snapshot.docs.forEach(doc => {
     const data = doc.data();
 
     if (!data.items) return;
+
+    if (selectedDate) {
+      const rawDate = new Date(data.date);
+    
+      const year = rawDate.getFullYear();
+      const month = String(rawDate.getMonth() + 1).padStart(2, "0");
+      const day = String(rawDate.getDate()).padStart(2, "0");
+    
+      const formatted = `${year}-${month}-${day}`;
+    
+      if (formatted !== selectedDate) return;
+    }
 
     data.items.forEach(item => {
       const category = item.category || "Others";
@@ -35,8 +51,11 @@ async function loadExpenseChart() {
       }
 
       categoryTotals[category] += total;
+      totalExpense += total;
     });
   });
+
+  totalExpenseEl.textContent = totalExpense.toFixed(2);
 
   const labels = Object.keys(categoryTotals);
   const values = Object.values(categoryTotals);
@@ -45,7 +64,11 @@ async function loadExpenseChart() {
 }
 
 function renderChart(labels, values) {
-  new Chart(ctx, {
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  chartInstance = new Chart(ctx, {
     type: "pie",
     data: {
       labels,
@@ -91,5 +114,9 @@ function renderChart(labels, values) {
     plugins: [ChartDataLabels]
   });
 }
+
+datePicker.addEventListener("change", (e) => {
+  loadExpenseChart(e.target.value);
+});
 
 loadExpenseChart();

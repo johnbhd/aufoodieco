@@ -101,9 +101,8 @@
 
 .gcash-header {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 1.2rem;
 }
 
 .gcash-logo {

@@ -34,11 +34,18 @@ async function getOrderByUser() {
 }
 
 function renderTransactions() {
+    const expenseDiv = document.getElementById("sum-expense");
+    
     let filtered = transactions.filter(order => {
         const description = order.items.map(i => i.name).join(" ").toLowerCase();
         return description.includes(searchInput.value.toLowerCase());
     });
-
+    
+    const overallTotal = filtered.reduce((sum, order) => {
+        return sum + Number(order.total);
+    }, 0);
+    
+    
     filtered.sort((a, b) => sortSelect.value === "newest" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date));
 
     const totalPages = Math.ceil(filtered.length / itemsPerPage);
@@ -46,7 +53,7 @@ function renderTransactions() {
     const end = start + itemsPerPage;
     const pageItems = filtered.slice(start, end);
 
-const ordersRow = pageItems.length > 0 
+    const ordersRow = pageItems.length > 0 
     ? pageItems.map(order => {
         const multipleItems = order.items.length > 1;
         const itemNames = order.items.map(item => multipleItems ? `• ${item.name}` : item.name).join('<br>');
