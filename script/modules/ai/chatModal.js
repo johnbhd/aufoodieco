@@ -2,7 +2,6 @@ let globalData = {};
 let greetingData = {};
 let isDataLoaded = false;
 
-// LOAD JSON DATA
 async function loadChatData() {
     try {
         const globalRes = await fetch("../data/global.json");
@@ -15,7 +14,6 @@ async function loadChatData() {
 
         console.log("GREETING RAW:", greetText);
 
-        // convert manually
         globalData = JSON.parse(globalText);
         greetingData = JSON.parse(greetText);
 
@@ -28,26 +26,24 @@ async function loadChatData() {
 }
 loadChatData();
 
-// TOGGLE CHAT
 function toggleChat() {
     const chatModal = document.getElementById("chat-modal");
     chatModal.style.display =
         chatModal.style.display === "flex" ? "none" : "flex";
 }
 
-// CLOSE CHAT
 function closeChat() {
     document.getElementById("chat-modal").style.display = "none";
 }
+
 function normalize(text) {
     return text
         .toLowerCase()
-        .replace(/[^a-z0-9\s]/g, "") // remove symbols
-        .replace(/\s+/g, " ") // remove extra spaces
+        .replace(/[^a-z0-9\s]/g, "")
+        .replace(/\s+/g, " ")
         .trim();
 }
 
-// Levenshtein Distance (for misspellings)
 function similarity(a, b) {
     const matrix = [];
 
@@ -82,12 +78,10 @@ function getBotResponse(message) {
         for (let key in data) {
             const cleanKey = normalize(key);
 
-            // 1. direct include (handles no space like "goodmorning")
             if (msg.replace(/\s/g, "").includes(cleanKey.replace(/\s/g, ""))) {
                 return data[key];
             }
 
-            // 2. similarity check (handles misspell)
             const score = similarity(msg, cleanKey);
 
             if (score > highestScore) {
@@ -103,13 +97,11 @@ function getBotResponse(message) {
     const globalMatch = checkData(globalData);
     if (globalMatch) return globalMatch;
 
-    // threshold (important para di random reply)
     if (highestScore > 0.4) return bestMatch;
 
     return "Sorry 😅 I didn't understand that.";
 }
 
-// SEND MESSAGE
 function sendMessage() {
     const chatBody = document.getElementById("chat-body");
     const chatInput = document.getElementById("chat-input");
@@ -117,7 +109,6 @@ function sendMessage() {
     const message = chatInput.value.trim();
     if (!message) return;
 
-    // USER MESSAGE
     const userMsg = document.createElement("p");
     userMsg.className = "chat-msg user";
     userMsg.textContent = message;
@@ -126,7 +117,6 @@ function sendMessage() {
     chatInput.value = "";
     chatBody.scrollTop = chatBody.scrollHeight;
 
-    // BOT RESPONSE
     setTimeout(() => {
         const aiMsg = document.createElement("p");
         aiMsg.className = "chat-msg ai";
@@ -142,7 +132,6 @@ function sendMessage() {
     }, 500);
 }
 
-// EVENTS
 document.addEventListener("click", (e) => {
     if (e.target.closest(".chatAssistant-icon")) {
         toggleChat();
@@ -152,13 +141,11 @@ document.addEventListener("click", (e) => {
         closeChat();
     }
 
-    // IMPORTANT: handles click on icon inside button
     if (e.target.closest("#send-chat")) {
         sendMessage();
     }
 });
 
-// ENTER KEY SUPPORT
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && e.target.id === "chat-input") {
         sendMessage();
