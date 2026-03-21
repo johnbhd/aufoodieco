@@ -83,6 +83,7 @@ export async function doRegister() {
     // Use email as the document ID
     const userDocRef = doc(db, "users", email);
     const userSnapshot = await getDoc(userDocRef);
+    const randomEmoney = Math.floor(Math.random() * (5000 - 3000 + 1)) + 3000;
 
     if (userSnapshot.exists()) {
       toastError("Email already registered! Try another email.");
@@ -94,6 +95,7 @@ export async function doRegister() {
       email: email,
       password: password,
       role: role,
+      eMoney: randomEmoney,
       createdAt: serverTimestamp()
     });
 

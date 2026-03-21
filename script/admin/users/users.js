@@ -31,6 +31,7 @@ function openAddUserModal() {
             <p><strong>Role:</strong> <input type="text" id="add-role"></p>
             <p><strong>Course / Department:</strong> <input type="text" id="add-department"></p>
             <p><strong>Year Level:</strong> <input type="text" id="add-yearLevel"></p>
+             <p><strong>Emoney:</strong> <input type="number" id="add-eMoney"></p>
             <div class="btnModal">
                 <button type="button" id="addSaveBtn">Add</button>
                 <button type="button" id="addCloseBtn">Close</button>
@@ -54,6 +55,7 @@ function openAddUserModal() {
             role: document.getElementById('add-role').value.trim(),
             department: document.getElementById('add-department').value.trim(),
             yearLevel: document.getElementById('add-yearLevel').value.trim(),
+            eMoney: parseInt(document.getElementById('add-eMoney').value.trim(), 10),
             createdAt: new Date()
         };
 
@@ -89,6 +91,7 @@ function viewModal(user) {
             <p><strong>Role:</strong> <input type="text" id="edit-role" value="${user.role || ""}"></p>
             <p><strong>Course / Department:</strong> <input type="text" id="edit-department" value="${user.department || ""}"></p>
             <p><strong>Year Level:</strong> <input type="text" id="edit-yearLevel" value="${user.yearLevel || ""}"></p>
+            <p><strong>Emoney:</strong> <input type="number" id="edit-eMoney" value="${user.eMoney || 0}"></p>
             <div class="btnModal">
                 <button type="button" id="saveBtn">Save</button>
                 <button type="button" id="closeBtn">Close</button>
@@ -106,7 +109,8 @@ function viewModal(user) {
             password: document.getElementById("edit-password").value.trim(), // just like name
             role: document.getElementById("edit-role").value.trim(),
             department: document.getElementById("edit-department").value.trim(),
-            yearLevel: document.getElementById("edit-yearLevel").value.trim()
+            yearLevel: document.getElementById("edit-yearLevel").value.trim(),
+            eMoney: parseInt(document.getElementById('edit-eMoney').value.trim(), 10),
         };
 
         try {

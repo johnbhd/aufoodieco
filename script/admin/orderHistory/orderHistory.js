@@ -198,6 +198,7 @@ function renderOrders(orders, ordersCount) {
                 <td>${itemPrices}</td>
                 <td>${itemQtys}</td>
                 <td>${order.total}</td>
+                <td>${order.type}</td>
                 <td>${order.date}</td>
                 <td class="actions">
                     <button class="receipt" id="receipt">Receipt</button>
@@ -219,6 +220,7 @@ function renderOrders(orders, ordersCount) {
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
+            <th>Type</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>
