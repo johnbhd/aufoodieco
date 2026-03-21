@@ -80,7 +80,7 @@ function viewModal(user) {
 
     viewModal.innerHTML = `
       <div class="popup-field">
-        <h4>Edit User Details</h4>
+        <h4>Edit User Details</h4><br>
         <div class="details-content">
             <p><strong>Name:</strong> <input type="text" id="edit-name" value="${user.name}"></p>
             <p><strong>Student ID / User ID:</strong> <input type="text" id="edit-studentId" value="${user.studentId || ""}"></p>

@@ -22,6 +22,7 @@ export function addToCart(id) {
     cart.push({
       id: food.id,
       name: food.name,
+      category: food.category,
       price: food.price,
       img: food.img,
       qty: 1

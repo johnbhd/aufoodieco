@@ -104,7 +104,27 @@
     flex-direction: column;
     gap: 10px;
 }
-
+.modal-qr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.qr-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translate(-60%, -80%);
+    border-radius: 10px;
+    background: white; /* important for readability */
+    padding: 5px;
+}
+.qr-logo  img {
+    height: 20px;
+     transform: translate(-25%, -20%);
+    width: 20px;
+}
 .modal-payment div div {
     display: flex;
     align-items: center;
@@ -131,6 +151,15 @@
 
 .modal-btn button:first-child:hover{
     background-color: #880303;
+}
+
+.modal-btn #go-orders {
+    background-color: #28a745; /* Bootstrap success green */
+    color: white;
+}
+
+.modal-btn #go-orders:hover {
+    background-color: #1e7e34; /* Darker green on hover */
 }
 
 .modal-btn button:last-child{

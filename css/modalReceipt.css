@@ -1,0 +1,135 @@
+.receipt-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+
+/* RECEIPT PAPER */
+.receipt-box,
+.receipt-box * {
+  font-family: 'Courier Prime', monospace;
+
+}
+.receipt-box {
+  width: 210px;
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 1px;
+  padding: 15px;
+
+  overflow-y: auto;
+}
+
+
+/* HEADER */
+
+.receipt-header {
+  text-align: center;
+}
+.receipt-header img {
+  width: 40px;
+  height: 40px;
+  filter: grayscale(100%);
+}
+.receipt-header h3 {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.receipt-header p {
+  margin: 0;
+  font-size: 0.6rem;
+}
+
+
+/* BODY */
+
+.receipt-body {
+  margin-top: 20px;
+  font-size: 0.8rem;
+}
+
+
+/* ITEMS */
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px 0;
+}
+
+
+/* TOTAL */
+
+.receipt-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+
+/* CLOSE */
+
+.receipt-close {
+  margin-top: 10px;
+  width: 100%;
+  padding: 5px;
+  border: none;
+  background: #333;
+  color: white;
+  cursor: pointer;
+}
+.receipt-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff9f;
+
+  padding: 10px;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto;
+
+  border-top: 1px solid #ccc;
+
+  z-index: 1000;
+}
+
+
+/* buttons */
+
+.receipt-actions button {
+  padding: 6px 12px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+.btn-pdf {
+  background: #e53935;
+  color: white;
+}
+
+.btn-jpg {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-close {
+  background: #333;
+  color: white;
+}

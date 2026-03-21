@@ -1,5 +1,6 @@
 import { modalReview } from "./modalReview.js";
 import { checkoutOrder } from "./cart.js";
+import { modalQrCode} from "./qrCode/modalQrCode.js"
 import { toastSuccess, toastError } from "../utils/utils.js";
 
 export function reviewPaymentOrders(cart, total) {
@@ -33,13 +34,13 @@ export function reviewPaymentOrders(cart, total) {
         console.log("Selected payment:", value);
 
         if(value === "gcash") {
-            toastError("gcash not available, please choose another payment method");
-            return; // stop execution
+           modalQrCode(cart, total, "gcash");
+           return;
         }
 
         // Valid payment selected
         modal.style.display = "none";
-        checkoutOrder(cart, total);
+        checkoutOrder(cart, total, "cash");
 
     });
 
@@ -47,3 +48,4 @@ export function reviewPaymentOrders(cart, total) {
         modal.style.display = "none";
     });
 }
+

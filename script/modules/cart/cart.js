@@ -78,7 +78,7 @@ export function renderCart(orderCart) {
 }
 
 
-export function checkoutOrder(cart, total) {
+export function checkoutOrder(cart, total, type, orderIdFromQR) {
   if (cart.length === 0) return;
 
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
@@ -89,11 +89,12 @@ export function checkoutOrder(cart, total) {
   const sessionUser = JSON.parse(sessionStorage.getItem("session"));
 
   const newOrder = {
-    id: orderId,
+    id: orderIdFromQR ?? orderId,
     items: cart,
     total: total,
     email: sessionUser.email || "NA",
     name: sessionUser.name,
+    type: type,
     role: sessionUser.role,
     date: new Date().toLocaleString(),
     status: "new"

@@ -94,24 +94,43 @@
     color: black;
 }
 
-#saveBtn, #saveMenuBtn, #confirmDelete {
+#saveBtn, #saveMenuBtn, #confirmDelete, #saveOrderBtn {
     background-color: #28a745;
     color: white;
 }
 
-#saveBtn:hover, #saveMenuBtn:hover, #confirmDelete:hover {
+#saveBtn:hover, #saveMenuBtn:hover, #confirmDelete:hover, #saveOrderBtn:hover {
     background-color: #218838;
 }
 
-#closeBtn, #closeMenuBtn, #cancelDelete {
+#closeBtn, #closeMenuBtn, #cancelDelete, #closeOrderBtn {
     background-color: #dc3545;
     color: white;
 }
 
-#closeBtn:hover, #closeMenuBtn:hover, #cancelDelete:hover  {
+#closeBtn:hover, #closeMenuBtn:hover, #cancelDelete:hover, #closeOrderBtn:hover  {
     background-color: #c82333;
 }
+select.edit-category, select#edit-type,
+#edit-status {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #CBD5E1; /* light gray */
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #1E293B; /* dark text */
+    outline: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
 
+/* Focus effect */
+select.edit-category:focus, select#edit-type:focus,
+#edit-status:focus {
+    border-color: #3B82F6; /* blue */
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
 /* ===== DELETE ICON BUTTON ===== */
 .delete-btn {
     background: transparent;

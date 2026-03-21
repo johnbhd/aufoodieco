@@ -79,7 +79,8 @@
 
 .searchdiv input[type="text"]:hover,
 .update:hover,
-.delete:hover {
+.delete:hover,
+.receipt:hover {
     opacity: 0.8;
 }
 
@@ -137,7 +138,9 @@ tr, th, td {
 
 .actions .update,
 .actions .view,
-.actions .delete {
+.actions .delete,
+.actions .receipt
+{
     padding: 8px;
     margin: 5px;
     border-radius: 15px;
@@ -149,7 +152,7 @@ tr, th, td {
 .actions .update {
     background-color: #3B82F6;
 }
-.actions .view {
+.actions .view, .actions .receipt {
     background-color: #59ac55;
     padding: 0 10px;
 }
