@@ -1,3 +1,28 @@
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E1D27;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5C5A72;
+  border-radius: 8px;
+  border: 2px solid #1E1D27;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7D7AA0;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #5C5A72 #1E1D27;
+}
 /* ===== BASE ===== */
 * {
   margin: 0;

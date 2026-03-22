@@ -2,70 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>System Features || AUFoodieCo</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="./css/auth.css">
-</head>
-<body>
-    <header>
-        <nav class="nav">
-            <div class="con-nav">
-                <div class="nav-title">
-                    <img src="./imgs/aulogo.png" alt="AU Logo">
-                    <h4>AUFoodieCo</h4>
-                    
-                    <button id="menu-btn" class="menu-btn">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
 
-                <ul class="nav-links">
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./pages/features.html">Features</a></li>
-                    <li><a href="./pages/developers.html">Developers</a></li>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/auths.css">
+    <link rel="stylesheet" href="../css/feat.css">
+    <link rel="shortcut icon" href="../imgs/aufoodieco-logo.ico" type="image/x-icon">
+</head>
+
+<body>
+
+<header>
+    <nav class="nav">
+        <div class="con-nav">
+            <div class="nav-title">
+                <img src="../imgs/aulogo.png" alt="Logo">
+                <h4>AUFoodieCo</h4>
+            </div>
+
+            <button id="menu-btn" class="menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="./features.html">Features</a></li>
+                <li><a href="./developers.html">Developers</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+<main>
+
+    <!-- FEATURES -->
+    <section class="feat-section">
+        <h2 class="feat-title">System Features</h2>
+
+        <div class="feat-container">
+
+            <div class="feat-card">
+                <h3>Menu & Ordering</h3>
+                <ul>
+                    <li>Browse and filter menu items</li>
+                    <li>Add items to cart instantly</li>
+                    <li>Live cart with total price</li>
+                    <li>Search functionality</li>
                 </ul>
             </div>
-        </nav>
-    </header>
-    <main>
-        <section>
-            <div class="con-main">
-                <div class="hero-title">
-                    <h2>AUFoodieCo: <span class="hero-span">Self-Service Canteen Ordering System </span></h2>
-                    <p>
-                       A web-based kiosk system that makes canteen ordering faster and easier for students and staff                    </p>
-                    <div class="hero-btn">
-                       <button class="btn-about">About the System</button>
-                        <button class="btn-features">System Features</button>
-                    </div>
-                </div>
-                <div class="wrapper">
-                    <div class="authForm">
-                        <img src="./imgs/aulogo.png" alt="Logo">
-                        <h4 id="form-title">Login Page</h4>
-                        <div class="form-fields">
-                            <label>Email:</label>
-                            <input type="text" id="txtEmail" required >
 
-                            <label style="padding-top: 10px;">Password:</label>
-                            <div class="passwordField">
-                                <input type="password" id="txtPassword" required>
-                                <i class="fa-solid fa-eye icon" id="passwordToggle"></i>
-                            </div>
-                            <button type="submit" class="btn" id="btn-login">Login</button>
-                            
-                        </div>
-                    </div>
-                    <button class="btn-auth" id="auth-btn">Dont have account? <u>Register here.</u> </button>
-                </div>
+            <div class="feat-card">
+                <h3>User Experience</h3>
+                <ul>
+                    <li>Fast touch-based ordering</li>
+                    <li>Minimal alerts & confirmations</li>
+                    <li>Guest browsing option</li>
+                    <li>Clean and intuitive UI</li>
+                </ul>
             </div>
-        </section>
 
-    </main>
-    <footer>
-        <p>&copy; <span id="year">2026 </span> AUFoodieCo</p>
-    </footer>
-<script type="module" src="./script/modules/auth/auth.js"></script>
+            <div class="feat-card">
+                <h3>Customer Side</h3>
+                <ul>
+                    <li>Browse menu and order food</li>
+                    <li>Review cart and totals</li>
+                    <li>Track orders in real-time</li>
+                    <li>Expense Tracker</li>
+                    <li>OrderHistory</li>
+                    <li>Digital Receipt</li>
+                    <li>QR code Scanner for online simulation payment</li>
+                </ul>
+            </div>
+
+            <div class="feat-card">
+                <h3>Admin / Staff</h3>
+                <ul>
+                    <li>Manage order status</li>
+                    <li>View order details</li>
+                    <li>Dashboard with analytics</li>
+                    <li>User management system</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TECH STACK -->
+    <section class="tech-section">
+        <h2 class="feat-title">Technology Stack</h2>
+
+        <div class="tech-container">
+
+            <div class="tech-card">
+                <h3>Development</h3>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                    <li>JSON</li>
+                    <li>Chart JS</li>
+                    <li>Jspdf</li>
+                    <li>QRcode JS</li>
+                    <li>HTML QRcode</li>
+                    <li>Firebase</li>
+                </ul>
+            </div>
+
+            <div class="tech-card">
+                <h3>Design</h3>
+                <ul>
+                    <li>Figma</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+
+</main>
 </body>
 </html>
