@@ -17,6 +17,7 @@ export function renderFoods(list, foodList) {
         class="add-cart-btn"
         data-id="${food.id}"
       >
+      <i class="fa-solid fa-cart-plus" style="margin-right: 5px;"></i>
         Add to Cart
       </button>
 

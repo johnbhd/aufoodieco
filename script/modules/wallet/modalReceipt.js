@@ -9,9 +9,8 @@ const modal = document.getElementById("receiptModal");
 const receiptActions = document.getElementById("receipt-actions");
 
 // OPEN RECEIPT
-export function openReceipt() {
-    const order = JSON.parse(sessionStorage.getItem("selectedOrder"));
-
+export function openReceipt(order) {
+    
     if (!order) {
         modal.innerHTML = "<p>No receipt data</p>";
         receiptActions.style.display = "none";
@@ -20,7 +19,7 @@ export function openReceipt() {
     }
 
     receiptModal(order);
-    renderReceiptActions();
+    renderReceiptActions(order);
     modal.style.display = "flex";
     receiptActions.style.display = "flex";
 }
@@ -38,7 +37,7 @@ function receiptModal(order) {
         <div class="receipt-box">
 
             <div class="receipt-header">
-                <img src="../imgs/receipt.png" alt="">
+                <img src="../imgs/receipt.png" onerror="this.src='../../imgs/receipt.png'" alt="AU LOGO">
                 <div>
                     <h3>AU FoodieCo</h3>
                     <p>Arellano University</p>
@@ -71,25 +70,28 @@ function receiptModal(order) {
 }
 
 // RENDER ACTION BUTTONS
-function renderReceiptActions() {
+function renderReceiptActions(order) {
+    const receiptActions = document.getElementById("receipt-actions");
+
     receiptActions.innerHTML = `
-        <button class="btn-pdf" id="btn-pdf">
-            <i class="fa btn-pdf"></i> PDF
-        </button>
-
-        <button class="btn-jpg" id="btn-jpg">
-            <i class="fa btn"></i> JPG
-        </button>
-
-        <button class="btn-close" id="closeReceipt">
-            Close
-        </button>
+        <button class="btn-pdf" id="btn-pdf">PDF</button>
+        <button class="btn-jpg" id="btn-jpg">JPG</button>
+        <button class="btn-close" id="closeReceipt">Close</button>
     `;
 
-    const pdfBtn = document.getElementById("btn-pdf");
-    const jpgBtn = document.getElementById("btn-jpg");
+document.getElementById("btn-pdf").addEventListener("click", () => {
+  const receipt = document.querySelector(".receipt-box");
+  downloadPDF(receipt);
+});
 
-    pdfBtn.addEventListener("click", () => downloadPDF());
-    jpgBtn.addEventListener("click", () => downloadJPG());
+document.getElementById("btn-jpg").addEventListener("click", () => {
+  const receipt = document.querySelector(".receipt-box");
+  downloadJPG(receipt);
+});
+
+    document.getElementById("closeReceipt").addEventListener("click", () => {
+        document.getElementById("receiptModal").style.display = "none";
+        receiptActions.style.display = "none";
+    });
 }
 

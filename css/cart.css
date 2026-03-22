@@ -33,6 +33,44 @@
   font-weight: 600;
 }
 
+/* QUANTITY CONTROL */
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddddddb6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.qty-btn:first-child {
+  background: #f5f5f5;
+  color: black;
+}
+
+.qty-btn:first-child:hover {
+  background: #e0e0e0;  /* Darker gray for hover effect */
+  color: black;
+}
+
+.qty-btn:last-child {
+  background: #dc2626;
+  color: white;
+}
+
+.qty-btn:last-child:hover {
+  background: #b91c1c;  /* Darker red for hover effect */
+  color: white;
+}
+.qty {
+  padding: 0 10px;
+  font-size: 14px;
+}
 .delete-item {
   color: red;
   background: none;

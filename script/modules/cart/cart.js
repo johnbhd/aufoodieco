@@ -19,7 +19,7 @@ async function pushOrders(orders) {
 }
 
 export function renderCart(orderCart) {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let total = 0;
 
   const itemsHTML = cart.length
@@ -30,12 +30,20 @@ export function renderCart(orderCart) {
         return `
           <div class="cart-item">
             <div class="cart-info">
-              <h5 class="cart-name">${c.name} (${c.qty}x)</h5>
-              <p class="cart-price">${c.price} each</p>
+              <h5 class="cart-name">${c.name}</h5>
+              <p class="cart-price">₱${c.price} each</p>
             </div>
 
             <div class="cart-actions">
+              
+              <div class="qty-control">
+                <button class="qty-btn decrement" data-id="${c.id}">−</button>
+                <span class="qty">${c.qty}</span>
+                <button class="qty-btn increment" data-id="${c.id}">+</button>
+              </div>
+
               <span class="cart-item-total">₱${itemTotal}</span>
+
               <button 
                 class="delete-item"
                 data-id="${c.id}"
@@ -43,6 +51,7 @@ export function renderCart(orderCart) {
               >
                 <i class="fa-solid fa-trash"></i>
               </button>
+
             </div>
           </div>
         `;
@@ -68,15 +77,47 @@ export function renderCart(orderCart) {
     </button>
   `;
 
+  // ✅ HANDLE + / − BUTTONS
+  document.querySelectorAll(".increment").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+
+      cart = cart.map(item => {
+        if (item.id == id) {
+          item.qty += 1;
+        }
+        return item;
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart(orderCart);
+    });
+  });
+
+  document.querySelectorAll(".decrement").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+
+      cart = cart.map(item => {
+        if (item.id == id && item.qty > 1) {
+          item.qty -= 1; // ✅ LIMIT: minimum is 1
+        }
+        return item;
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart(orderCart);
+    });
+  });
+
+  // checkout
   const checkoutBtn = document.getElementById("checkout-btn");
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
-      //checkoutOrder(cart, total);
-      reviewPaymentOrders(cart, total)
+      reviewPaymentOrders(cart, total);
     });
   }
 }
-
 
 export function checkoutOrder(cart, total, type, orderIdFromQR) {
   if (cart.length === 0) return;

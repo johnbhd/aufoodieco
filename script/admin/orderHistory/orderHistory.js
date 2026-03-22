@@ -3,6 +3,7 @@ import { getFirestore, doc, updateDoc, deleteDoc } from "https://www.gstatic.com
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
 import { firebaseConfig } from "../../config/firebase-config.js";
 import { toastSuccess, toastError } from "../../modules/utils/utils.js";
+import { openReceipt } from "../../modules/wallet/modalReceipt.js";
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -54,8 +55,8 @@ function updateOrderModal(order) {
             <p><strong>Type:</strong>
                 <select id="edit-type">
                     <option value="" disabled ${!order.type ? "selected" : ""}>Select Type</option>
-                    <option value="Cash" ${order.type === "Cash" ? "selected" : ""}>Cash</option>
-                    <option value="GCash" ${order.type === "GCash" ? "selected" : ""}>GCash</option>
+                    <option value="cash" ${order.type === "Cash" ? "selected" : ""}>Cash</option>
+                    <option value="gcash" ${order.type === "GCash" ? "selected" : ""}>GCash</option>
                 </select>
             </p>
 
@@ -77,7 +78,7 @@ function updateOrderModal(order) {
     document.getElementById("saveOrderBtn").addEventListener("click", async () => {
 
         const status = document.getElementById("edit-status").value;
-        const type = document.getElementById("edit-type").value || "Cash"; // default if empty
+        const type = document.getElementById("edit-type").value || "cash"; // default if empty
 
         const categoryInputs = document.querySelectorAll(".edit-category");
 
@@ -152,20 +153,35 @@ function deleteOrderModal(orderId) {
 }
 document.addEventListener("click", (e) => {
 
+    // RECEIPT
+    if (e.target.classList.contains("receipt")) {
+        const id = e.target.dataset.id;
+        const order = allOrders.find(o => o.id === id);
+
+        if (!order) return;
+
+        openReceipt(order);
+    }
+
     // UPDATE
     if (e.target.classList.contains("update")) {
-        const index = Array.from(document.querySelectorAll(".update")).indexOf(e.target);
-        const order = allOrders[index];
+        const id = e.target.dataset.id;
+        const order = allOrders.find(o => o.id === id);
+
+        if (!order) return;
+
         updateOrderModal(order);
     }
 
     // DELETE
     if (e.target.classList.contains("delete")) {
-        const index = Array.from(document.querySelectorAll(".delete")).indexOf(e.target);
-        const order = allOrders[index];
+        const id = e.target.dataset.id;
+        const order = allOrders.find(o => o.id === id);
+
+        if (!order) return;
+
         deleteOrderModal(order.id);
     }
-
 });
 function searchOrders() {
     const val = orderSearch.value.toLowerCase().trim();
@@ -198,11 +214,12 @@ function renderOrders(orders, ordersCount) {
                 <td>${itemPrices}</td>
                 <td>${itemQtys}</td>
                 <td>${order.total}</td>
+                <td>${order.type}</td>
                 <td>${order.date}</td>
                 <td class="actions">
-                    <button class="receipt" id="receipt">Receipt</button>
-                    <button class="update">Update</button>
-                    <button class="delete">Delete</button>
+              <button class="receipt" data-id="${order.id}">Receipt</button>
+              <button class="update" data-id="${order.id}">Update</button>
+              <button class="delete" data-id="${order.id}">Delete</button>
                 </td>
             </tr>
         `;
@@ -219,6 +236,7 @@ function renderOrders(orders, ordersCount) {
             <th>Price</th>
             <th>Quantity</th>
             <th>Total</th>
+            <th>Type</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>

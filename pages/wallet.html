@@ -112,7 +112,15 @@
           <div class="balance-card">
             <div class="gcash-header">
               <div class="gcash-logo">GCash</div>
-              <div class="balance-amount">₱1,250.50</div>
+              <div class="balance-num">
+                <div class="currency">₱</div>
+                <input 
+                  type="number" 
+                  class="balance-amount" 
+                  id="balance-amount"
+                  value="0"
+                />
+              </div>
             </div>
             <div class="balance-info">
               <div class="info-balance">
@@ -140,17 +148,14 @@
               </div>
 
               <div class="expense-wrapper">
-
                 <div class="expense-info">
                   <h4>Total Expense</h4>
-                  <h2 class="total-expense">₱ 1,250.50</h2>
-
+                 <h2 class="total-expense">₱ <span id="sum-expense">0</span></h2>
                   <p class="expense-desc">
                     This chart shows how your expenses are divided between foods,
                     drinks, snacks, and other items inside AU FoodieCo.
                   </p>
                 </div>
-
                 <div class="expense-con">
                   <canvas id="expenseChart"></canvas>
                 </div>
@@ -188,6 +193,7 @@
 <script type="module" src="../script/modules/wallet/wallet.js"></script>
 <script type="module" src="../script/modules/wallet/expenseMonitoring.js"></script>
 <script type="module" src="../script/modules/wallet/qrScanner/qrScannerModal.js"></script>
+<script type="module" src="../script/modules/wallet/eMoney.js"></script>
 
 </body>
 </html>
