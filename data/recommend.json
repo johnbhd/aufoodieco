@@ -1,0 +1,47 @@
+{
+    "recommend": { "isPopular": true },
+    "suggest": { "isPopular": true },
+
+    "popular": { "isPopular": true },
+    "best": { "isPopular": true },
+    "top": { "isPopular": true },
+
+    "meal": { "category": "Meal" },
+    "ulam": { "category": "Meal" },
+    "kanin": { "category": "Meal" },
+
+    "drink": { "category": "Drink" },
+    "uhaw": { "category": "Drink" },
+    "thirsty": { "category": "Drink" },
+    "inumin": { "category": "Drink" },
+    "juice": { "category": "Drink" },
+    "soda": { "category": "Drink" },
+
+    "chips": { "tag": "chips" },
+    "junk": { "tag": "chips" },
+    "chichirya": { "tag": "snack" },
+    "sitsirya": { "tag": "snack" },
+    "snack": { "tag": "snack" },
+
+    "healthy": { "health": "healthy" },
+    "diet": { "diet": "Diet" },
+    "vegetarian": { "diet": "Vegetarian" },
+
+    "breakfast": { "mealTime": "Breakfast" },
+    "almusal": { "mealTime": "Breakfast" },
+    "umaga": { "mealTime": "Breakfast" },
+    
+    "breaktime": { "mealTime": "Breakfast" },
+    "recess": { "mealTime": "Breakfast" },
+    "lunch": { "mealTime": "Lunch" },
+    "tanghali": { "mealTime": "Lunch" },
+
+    "dinner": { "mealTime": "Dinner" },
+    "hapunan": { "mealTime": "Dinner" },
+    "gabi": { "mealTime": "Dinner" },
+
+    "cheap": { "priceBelow": 30 },
+    "mura": { "priceBelow": 30 },
+    "expensive": { "priceAbove": 50 },
+    "mahal": { "priceAbove": 50 }
+}

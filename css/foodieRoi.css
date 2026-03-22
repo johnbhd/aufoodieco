@@ -193,3 +193,15 @@
 .chat-modal-footer button:active {
     transform: scale(0.95);
 }
+.chat-food {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.chat-food img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}

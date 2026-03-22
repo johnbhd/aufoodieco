@@ -4,7 +4,7 @@
   "system": "Touch-based ordering system that is easy to use 💳😄",
   "purpose": "Order food, track orders, and enjoy meals easily 🛒😋",
   "features": "Includes menu browsing, cart, checkout, and order tracking 🥤😄",
-   "what": "AUFoodieCo 🍱😄 – Self-service campus canteen food hub for students. Fast meals, snacks, and drinks anytime you need!",
+  "what": "AUFoodieCo 🍱😄 – Self-service campus canteen food hub for students. Fast meals, snacks, and drinks anytime you need!",
   "how": "Select food, add to cart, then checkout quickly 🍔😎",
   "why": "No lines, making ordering faster and more convenient 🚀😄",
   "meaning": "An easy campus food ordering experience for everyone 💳😋",
@@ -24,5 +24,12 @@
   "history": "View your past orders anytime in history 📜😋",
   "analytics": "Check revenue and system statistics easily 📊😄",
   "wallet": "Manage and check your wallet balance anytime 💰😎",
-  "tracking": "Real-time order tracking for live updates 🚀😄"
+  "expense": "Manage your expense in the system and check your wallet balance anytime 💰😎",
+  "qr": "Scan to pay using local simulation payment, just choose the payment option when checkout order. Thank you",
+  "code": "Supports online local simulation payment, just choose the payment option when checkout order. Thank you",
+  "tracking": "Real-time order tracking for live updates 🚀😄",
+
+  "foodieroi": "FoodieROI 🤖😋 – Your smart AI food assistant inside AUFoodieCo",
+  "ai": "Hi! I'm FoodieROI 🤖😄, your AI assistant. I help you find the best food to order in AUFoodieCo canteen at Arellano University!",
+  "chatbot": "I can recommend meals, snacks, and drinks based on your taste and budget 🍱😋"
 }
